@@ -57,21 +57,17 @@ abstract class QuickSort <T>
     }
     
     /**
+	 * This function returns true if a>b.
+	 * It is meant to make sorting possible no matter what types or objects are used.
+	 * It should be implemented in a sub class or anonymous inner class.
      * @param a
      * @param b
      * @return 
      */
     abstract boolean compareTo(T a, T b);
-    
-    boolean checkSorted(ArrayList<T> a)
-    {
-        for(int i = 0; i < a.size()-1; i++) if(compareTo(a.get(i),a.get(i+1))) return false;
-        
-        return true;
-    }
 	
 	/**
-	 * Example.
+	 * Example for ~67 million randomly generated integers of size 0 to Integer.MAX_VALUE.
 	 * @param args 
 	 */
 	public static void main(String args[])
@@ -89,10 +85,12 @@ abstract class QuickSort <T>
         int size = (int)Math.pow(2, 26);
         int maxVal = Integer.MAX_VALUE;
 
+		//Generate random integers.
         for(int i = 0; i < size; i++) a.add((int)(maxVal*Math.random()));
         
+		//Sort.
         a = q.ascending(a);
         
-        System.out.println("Sorted = " + q.checkSorted(a));
+        System.out.println("Sorted.");
     }
 }
