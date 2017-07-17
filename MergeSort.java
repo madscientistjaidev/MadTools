@@ -41,6 +41,39 @@ abstract class MergeSort <T>
         return result;
     }
 	
+	ArrayList <T> descending(ArrayList <T> a)
+    {
+        if(a.size()<=1) return a;
+	
+		ArrayList <T> result = new ArrayList<>();
+        
+        int l = a.size();
+        ArrayList <T> left = new ArrayList(a.subList(0, l/2));
+        ArrayList <T> right = new ArrayList(a.subList((l/2), l));
+        
+        left = ascending(left);
+        right = ascending(right);
+        
+        for(int i = 0; i < l; i++)
+        {
+            if(left.isEmpty())
+            {
+                result.addAll(right);
+                return result;
+            }
+            
+            if(right.isEmpty())
+            {
+                result.addAll(left);
+                return result;
+            }
+            
+			result.add(compareTo(left.get(0), right.get(0)) ? left.remove(0) : right.remove(0));
+        }
+        
+        return result;
+    }
+	
 	/**
 	 * This function returns true if a>b.
 	 * It is meant to make sorting possible no matter what types or objects are used.
