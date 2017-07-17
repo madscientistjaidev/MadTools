@@ -67,7 +67,7 @@ abstract class QuickSort <T>
     abstract boolean compareTo(T a, T b);
 	
 	/**
-	 * Example for ~67 million randomly generated integers of size 0 to Integer.MAX_VALUE.
+	 * Example for ~8 million randomly generated integers of size 0 to Integer.MAX_VALUE.
 	 * @param args 
 	 */
 	public static void main(String args[])
@@ -82,8 +82,11 @@ abstract class QuickSort <T>
 		//Create ArrayList
         ArrayList <Integer> a = new ArrayList<>();
         
-        int size = (int)Math.pow(2, 26);
-        int maxVal = Integer.MAX_VALUE;
+        //Size of array
+        int size = (int)Math.pow(2, 23);
+        
+		//Maximum value of elements
+		int maxVal = Integer.MAX_VALUE;
 
 		//Generate random integers.
         for(int i = 0; i < size; i++) a.add((int)(maxVal*Math.random()));
