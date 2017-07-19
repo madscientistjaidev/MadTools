@@ -16,25 +16,6 @@ public class Orienteering
 		visited = new ArrayList<>();
 	}
 	
-	public static void main(String args[])
-	{
-		char[][] grid = {{'*','#'}};
-		char[][] grid2 = {
-							{'*','O','X','X','X','X','X','O','#'},
-							{'X','O','X','O','O','O','X','O','X'},
-							{'X','O','X','O','X','O','X','O','X'},
-							{'X','O','X','O','X','O','X','O','X'},
-							{'X','O','X','O','X','O','X','O','X'},
-							{'X','O','X','O','X','O','X','O','X'},
-							{'X','O','X','O','X','O','X','O','X'},
-							{'X','O','X','O','X','O','X','O','X'},
-							{'X','O','O','O','X','O','O','O','X'},
-							{'X','X','X','X','X','X','X','X','X'}
-						};
-		
-		System.out.println(new Orienteering().findDist(grid2));
-	}
-	
 	public int findDist(char[][] grid)
     {
         //Coordinates of source
@@ -107,4 +88,45 @@ public class Orienteering
         //Return.
         return res[0]+1;
     }
+	
+	public static void main(String args[])
+	{
+		char[][] grid =		{
+								{'*','#'}
+							};
+		
+		char[][] grid2 =	{
+								{'*','O','X','X','X','X','X','O','#'},
+								{'X','O','X','O','O','O','X','O','X'},
+								{'X','O','X','O','X','O','X','O','X'},
+								{'X','O','X','O','X','O','X','O','X'},
+								{'X','O','X','O','X','O','X','O','X'},
+								{'X','O','X','O','X','O','X','O','X'},
+								{'X','O','X','O','X','O','X','O','X'},
+								{'X','O','X','O','X','O','X','O','X'},
+								{'X','O','O','O','X','O','O','O','X'},
+								{'X','X','X','X','X','X','X','X','X'}
+							};
+		
+		char[][] grid3 =	{
+								{'X','X','X','X','X','X'},
+								{'X','*','O','O','O','X'},
+								{'X','O','O','#','O','X'},
+								{'X','X','X','X','X','X'}
+							};
+		
+		char[][] grid4 =	{
+								{'X','X','X','X','X'},
+								{'X','*','X','O','X'},
+								{'X','O','X','#','X'},
+								{'X','X','X','X','X'}
+							};
+		
+		Orienteering o = new Orienteering();
+		
+		System.out.println(o.findDist(grid));
+		System.out.println(o.findDist(grid2));
+		System.out.println(o.findDist(grid3));
+		System.out.println(o.findDist(grid4));
+	}
 }
