@@ -8,7 +8,12 @@ import java.util.ArrayList;
  */
 abstract class MergeSort <T>
 {
-    ArrayList <T> ascending(ArrayList <T> a)
+	/**
+	 * Accepts an ArrayList and returns one sorted in ascending order.
+	 * @param a
+	 * @return 
+	 */
+	ArrayList <T> ascending(ArrayList <T> a)
     {
         if(a.size()<=1) return a;
 	
@@ -41,6 +46,11 @@ abstract class MergeSort <T>
         return result;
     }
 	
+	/**
+	 * Accepts an ArrayList and returns one sorted in descending order.
+	 * @param a
+	 * @return 
+	 */
 	ArrayList <T> descending(ArrayList <T> a)
     {
         if(a.size()<=1) return a;
