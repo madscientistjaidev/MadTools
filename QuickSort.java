@@ -8,11 +8,17 @@ import java.util.ArrayList;
  */
 abstract class QuickSort <T>
 {        
-    ArrayList <T> ascending(ArrayList <T> a)
+    /**
+	 * Accepts an ArrayList and returns one sorted in ascending order.
+	 * @param a
+	 * @return 
+	 */
+	ArrayList <T> ascending(ArrayList <T> a)
     {        
         if(a.size()<=1) return a;
         
-        T pivot = a.remove(0);
+        //First element is pivot.
+		T pivot = a.remove(0);
         
         ArrayList <T> left = new ArrayList<>();
         ArrayList <T> right = new ArrayList<>();
@@ -32,10 +38,16 @@ abstract class QuickSort <T>
         return left;
     }
     
+	/**
+	 * Accepts an ArrayList and returns one sorted in descending order.
+	 * @param a
+	 * @return 
+	 */
     ArrayList <T> descending(ArrayList <T> a)
     {   
         if(a.size()<=1) return a;
-                
+        
+		//First element is pivot.
         T pivot = a.remove(0);
 		
         ArrayList <T> left = new ArrayList<>();
@@ -83,7 +95,7 @@ abstract class QuickSort <T>
         ArrayList <Integer> a = new ArrayList<>();
         
         //Size of array
-        int size = (int)Math.pow(2, 23);
+        int size = (int)Math.pow(2, 26);
         
 		//Maximum value of elements
 		int maxVal = Integer.MAX_VALUE;
