@@ -4,24 +4,29 @@ import java.util.ArrayList;
 
 public class CollatzConjecture
 {
+	/**
+	 * Accepts an integer and returns an ArrayList of the hailstorm numbers rooted at that integer.
+	 * @param n
+	 * @return 
+	 */
 	ArrayList <Integer> findSequence(int n)
 	{
 		ArrayList <Integer> result = new ArrayList<>();
 		
 		if(n<1) return result;
 		
-		while(n!=1)
-		{
-			result.add(n);
-			
-			if(n%2==0) n /= 2;
-			else n = 3*n+1;
-		}
+		do result.add(n = n%2==0 ? n /= 2 : 3*n+1);
+		while(n!=1);
 		
-		result.add(1);
 		return result;
 	}
 	
+	/**
+	 * Example.
+	 * Generates 25 random numbers between 0 and 2^22.
+	 * Prints hailstorm sequence and its length for each of them.
+	 * @param args 
+	 */
 	public static void main(String args[])
 	{
 		int maxVal = (int)Math.pow(2, 22);
@@ -35,9 +40,11 @@ public class CollatzConjecture
 		{
 			val = (int) (maxVal*Math.random());
 			
-			System.out.print(val + " -> ");
+			System.out.print(val + " : ");
 			
 			result = c.findSequence(val);
+			
+			System.out.print(result.size() + " -> ");
 			
 			for(Integer x : result)
 				System.out.print(x + ", ");
