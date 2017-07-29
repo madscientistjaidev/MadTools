@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class CollatzConjecture
 {
-	ArrayList <Integer> find(int n)
+	ArrayList <Integer> findSequence(int n)
 	{
 		ArrayList <Integer> result = new ArrayList<>();
 		
@@ -20,5 +20,29 @@ public class CollatzConjecture
 		
 		result.add(1);
 		return result;
+	}
+	
+	public static void main(String args[])
+	{
+		int maxVal = (int)Math.pow(2, 22);
+		int size = 25;
+		int val;
+		
+		CollatzConjecture c = new CollatzConjecture();
+		ArrayList<Integer> result;
+		
+		for(int i = 0; i < size; i++)
+		{
+			val = (int) (maxVal*Math.random());
+			
+			System.out.print(val + " -> ");
+			
+			result = c.findSequence(val);
+			
+			for(Integer x : result)
+				System.out.print(x + ", ");
+			
+			System.out.println();
+		}
 	}
 }
