@@ -1,5 +1,6 @@
 package MadTools;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -13,7 +14,7 @@ public class FloydWarshall
 	 * @param graph
 	 * @return 
 	 */	
-	int[][] run(int [][] graph)
+	int[][] findWeights(int [][] graph)
     {
         for(int k = 0; k < graph.length; k++)
             for (int[] row : graph)
@@ -23,6 +24,16 @@ public class FloydWarshall
         
         return graph;
     }
+	
+	boolean negativeCycles(int graph[][])
+	{
+		int dist[][] = findWeights(graph);
+		
+		for(int i = 0; i < dist.length; i++)
+			if(dist[i][i]<0) return true;
+		
+		return false;
+	}
 	
 	/**
 	 * Example.
@@ -38,8 +49,11 @@ public class FloydWarshall
                             {1000,-1,1000,0}
                         };
         
-        int [][] dist = new FloydWarshall().run(graph);
+		FloydWarshall fw = new FloydWarshall();
+        int [][] dist = fw.findWeights(graph);
         
         for(int[] row : dist) System.out.println(Arrays.toString(row));
+		
+		System.out.println("\nNegative Cycles = " + fw.negativeCycles(graph));
     }
 }
