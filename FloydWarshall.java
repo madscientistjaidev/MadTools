@@ -56,4 +56,34 @@ public class FloydWarshall
 		
 		System.out.println("\nNegative Cycles = " + fw.negativeCycles(graph));
     }
+	
+	ArrayList<Integer> findPath(int [][] graph, int src, int dest)
+    {
+        int l = graph.length;
+		int [][] next = new int [l][l];
+		
+		for(int i = 0; i < l; i++)
+			for(int j = 0; j < l; j++)
+				next[i][j]=j;
+		
+		for(int k = 0; k < l; k++)
+            for (int i = 0; i < l; i++)
+                for (int j = 0; j < l; j++)
+                    if (graph[i][j] > graph[i][k] + graph[k][j])
+					{
+						graph[i][j] = graph[i][k] + graph[k][j];
+						next[i][j]=next[i][k];
+					}
+        
+		ArrayList<Integer> path = new ArrayList<>();
+		path.add(src);
+		
+		while(src!=dest)
+		{
+			src = next[src][dest];
+			path.add(src);
+		}
+		
+        return path;
+    }
 }
