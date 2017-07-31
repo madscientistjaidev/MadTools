@@ -8,6 +8,11 @@ import java.util.Arrays;
  */
 public class FloydWarshall
 {
+	/**
+	 * Accepts a graph in adjacency matrix form and returns shortest path matrix.
+	 * @param graph
+	 * @return 
+	 */	
 	int[][] run(int [][] graph)
     {
         for(int k = 0; k < graph.length; k++)
@@ -19,8 +24,13 @@ public class FloydWarshall
         return graph;
     }
 	
+	/**
+	 * Example.
+	 * @param args 
+	 */
     public static void main(String args[])
     {
+		//Use some very large value (1000 in this case) for representing infinity.
 		int graph[][] = {
                             {0,1000,-2,1000},
                             {4,0,3,1000},
