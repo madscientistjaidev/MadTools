@@ -15,19 +15,18 @@ abstract class QuickSort <T>
 	 */
 	ArrayList <T> ascending(ArrayList <T> a)
     {        
-        if(a.size()<=1) return a;
+        if(a==null) return new ArrayList<>();
+		if(a.size()<=1) return a;
         
-        //First element is pivot.
-		T pivot = a.remove(0);
+        //Randomly choose pivot.
+		T pivot = a.remove((int)(a.size()*Math.random()));
         
         ArrayList <T> left = new ArrayList<>();
         ArrayList <T> right = new ArrayList<>();
 		
 		for(T x : a)
-        {
             if(!compareTo(x, pivot)) left.add(x);
             else right.add(x);
-        }
         
         left = ascending(left);
         right = ascending(right);
@@ -45,19 +44,18 @@ abstract class QuickSort <T>
 	 */
     ArrayList <T> descending(ArrayList <T> a)
     {   
-        if(a.size()<=1) return a;
+       if(a==null) return new ArrayList<>();
+		if(a.size()<=1) return a;
         
-		//First element is pivot.
-        T pivot = a.remove(0);
-		
+        //Randomly choose pivot.
+		T pivot = a.remove((int)(a.size()*Math.random()));
+        
         ArrayList <T> left = new ArrayList<>();
         ArrayList <T> right = new ArrayList<>();
         
         for(T x : a)
-        {
             if(!compareTo(x, pivot)) right.add(x);
             else left.add(x);
-        }
         
         left = descending(left);
         right = descending(right);
@@ -79,7 +77,7 @@ abstract class QuickSort <T>
     abstract boolean compareTo(T a, T b);
 	
 	/**
-	 * Example for ~8 million randomly generated integers of size 0 to Integer.MAX_VALUE.
+	 * Example for ~137 million randomly generated integers of size 0 to Integer.MAX_VALUE.
 	 * @param args 
 	 */
 	public static void main(String args[])
@@ -95,7 +93,7 @@ abstract class QuickSort <T>
         ArrayList <Integer> a = new ArrayList<>();
         
         //Size of array
-        int size = (int)Math.pow(2, 26);
+        int size = (int)Math.pow(2, 28);
         
 		//Maximum value of elements
 		int maxVal = Integer.MAX_VALUE;
