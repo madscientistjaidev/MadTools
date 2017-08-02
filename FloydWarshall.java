@@ -25,6 +25,11 @@ public class FloydWarshall
         return graph;
     }
 	
+	/**
+	 * Detects presence of negative cycles.
+	 * @param graph
+	 * @return 
+	 */
 	boolean negativeCycles(int graph[][])
 	{
 		int dist[][] = findWeights(graph);
@@ -57,6 +62,13 @@ public class FloydWarshall
 		System.out.println("\nNegative Cycles = " + fw.negativeCycles(graph));
     }
 	
+	/**
+	 * Finds path from source node to destination node.
+	 * @param graph
+	 * @param src
+	 * @param dest
+	 * @return 
+	 */
 	ArrayList<Integer> findPath(int [][] graph, int src, int dest)
     {
         int l = graph.length;
