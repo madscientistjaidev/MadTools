@@ -28,14 +28,14 @@ public class CollatzConjecture
 	
 	/**
 	 * Example.
-	 * Generates 25 random numbers between 0 and 2^20.
+	 * Generates 2^15 random numbers between 0 and 2^15.
 	 * Prints hailstorm sequence and its length for each of them.
 	 * @param args 
 	 */
 	public static void main(String args[])
 	{
-		int maxVal = (int)Math.pow(2, 20);
-		int size = 25;
+		int maxVal = (int)Math.pow(2, 15);
+		int size = (int)Math.pow(2, 15);
 		int val;
 		
 		CollatzConjecture c = new CollatzConjecture();
@@ -44,9 +44,10 @@ public class CollatzConjecture
 		for(int i = 0; i < size; i++)
 		{
 			val = (int)(maxVal*Math.random());
-			result = c.findSequence(val);
+			System.out.print(val + " : ");
 			
-			System.out.println(val + " : " + result.size() + " -> " + result);
+			result = c.findSequence(val);
+			System.out.println(result.size() + " -> " + result);
 		}
 	}
 }
