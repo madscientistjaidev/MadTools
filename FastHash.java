@@ -94,4 +94,16 @@ public class FastHash
 	
 	return "";
     }
+	
+    public static void main(String args[])
+    {
+	FastHash f = new FastHash();
+	
+	int width = 128;
+	
+	System.out.println(f.hexHash("Hello World", width));
+	System.out.println(f.hexHash("Hello Worlds", width));
+	System.out.println(f.hexHash("Hello_World", width));
+	System.out.println(f.hexHash("hello world", width));
+    }
 }
