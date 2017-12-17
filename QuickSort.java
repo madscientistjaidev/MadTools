@@ -15,10 +15,10 @@ abstract class QuickSort <T>
      * @return
      */
     ArrayList <T> ascending(ArrayList <T> a)
-    {        
+    {
 	if(a.size()<=1) return a;
         
-        T pivot = a.remove((int)(a.size()*Math.random()));
+        T pivot = a.remove(getMedian(a.get(0),a.get(a.size()/2),a.get(a.size()-1),a.size()));
         ArrayList <T> left = new ArrayList<>(), right = new ArrayList<>();
 	
 	for (T x : a)
@@ -42,7 +42,7 @@ abstract class QuickSort <T>
     {        
         if(a.size()<=1) return a;
         
-        T pivot = a.remove((int)(a.size()*Math.random()));
+        T pivot = a.remove(getMedian(a.get(0),a.get(a.size()/2),a.get(a.size()-1),a.size()));
         ArrayList <T> left = new ArrayList<>(), right = new ArrayList<>();
 	
 	for (T x : a)
@@ -54,6 +54,19 @@ abstract class QuickSort <T>
         left.addAll(ascending(right));
         
         return left;
+    }
+    
+    /**
+     * Gets median of 3 elements to choose pivot.
+     * @param a
+     * @param b
+     * @param c
+     * @param size
+     * @return 
+     */
+    private int getMedian(T a, T b, T c, int size)
+    {
+        return size<3 ? 0 : (compareTo(a,b) ? (compareTo(c,a) ? 0 : (compareTo(c,b) ? size-1 : size/2)) : (compareTo(c,b) ? (size/2) : (compareTo(c,a) ? size-1 : 0)));
     }
     
     /**
