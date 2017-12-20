@@ -49,15 +49,17 @@ abstract class QuickSort <T>
 	    if(!compareTo(x, pivot)) right.add(x);
 	    else left.add(x);
         
-        left = ascending(left);
+        left = descending(left);
 	left.add(pivot);
-        left.addAll(ascending(right));
+        left.addAll(descending(right));
         
         return left;
     }
     
     /**
      * Gets median of 3 elements to choose pivot.
+     * Compares first, middle, and last elements, and returns index of median.
+     * 
      * @param a
      * @param b
      * @param c
@@ -70,8 +72,7 @@ abstract class QuickSort <T>
     }
     
     /**
-     * This function returns true if a>b. It is meant to make sorting possible no matter what types or objects are used.
-     * It should be implemented in a sub class or anonymous inner class.
+     * Returns true if a>b. Should be implemented in a sub class or anonymous inner class.
      *
      * @param a
      * @param b
@@ -80,7 +81,7 @@ abstract class QuickSort <T>
     abstract boolean compareTo(T a, T b);
 
     /**
-     * Example for randomly generated integers of size 0 to Integer.MAX_VALUE.
+     * Example for ~1 million randomly generated integers of size 0 to Integer.MAX_VALUE-1.
      *
      * @param args
      */
@@ -93,6 +94,7 @@ abstract class QuickSort <T>
 	    boolean compareTo(Integer a, Integer b) {return a > b;}
 	};
         
+        //Test mode chooses small input size, max value, and prints input and output.
         boolean test = true;
 
 	//Create ArrayList
@@ -105,14 +107,14 @@ abstract class QuickSort <T>
 	int maxVal = test ? 100 : Integer.MAX_VALUE;
 
 	//Generate random integers.
-	for (int i = 0; i < size; i++)
-            a.add((int) (maxVal * Math.random()));
+	for (int i = 0; i < size; i++) a.add((int)(maxVal*Math.random()));
         
         //Sort.
         System.out.print(test ? a + "\n" : "");
         a = q.ascending(a);
         System.out.print(test ? a + "\n" : "");
         
+        //Check if result is sorted.
         for(int i = 0; i < a.size()-1; i++)
             if(q.compareTo(a.get(i),a.get(i+1)))
             {
