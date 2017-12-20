@@ -92,22 +92,34 @@ abstract class QuickSort <T>
 	    @Override
 	    boolean compareTo(Integer a, Integer b) {return a > b;}
 	};
+        
+        boolean test = true;
 
 	//Create ArrayList
 	ArrayList<Integer> a = new ArrayList<>();
 
 	//Size of array
-	int size = (int) Math.pow(2, 26);
+	int size = test ? 30 : (int)Math.pow(2, 20);
 
 	//Maximum value of elements
-	int maxVal = Integer.MAX_VALUE;
+	int maxVal = test ? 100 : Integer.MAX_VALUE;
 
 	//Generate random integers.
-	for (int i = 0; i < size; i++) a.add((int) (maxVal * Math.random()));
-
-	//Sort.
-	a = q.ascending(a);
-
-	System.out.println("Sorted.");
+	for (int i = 0; i < size; i++)
+            a.add((int) (maxVal * Math.random()));
+        
+        //Sort.
+        System.out.print(test ? a + "\n" : "");
+        a = q.ascending(a);
+        System.out.print(test ? a + "\n" : "");
+        
+        for(int i = 0; i < a.size()-1; i++)
+            if(q.compareTo(a.get(i),a.get(i+1)))
+            {
+                System.out.print("Not Sorted.\n");
+                return;
+            }
+        
+	System.out.print("Sorted.\n");
     }
 }
