@@ -16,15 +16,15 @@ abstract class QuickSort <T>
      */
     ArrayList <T> ascending(ArrayList <T> a)
     {
-        T pivot = a.remove(a.size()<3 ? 0 : getMedian(a.get(0),a.get(a.size()/2),a.get(a.size()-1),a.size()));
+        final T pivot = a.remove(a.size()<3 ? 0 : getMedian(a.get(0),a.get(a.size()/2),a.get(a.size()-1),a.size()));
         ArrayList <T> left = new ArrayList<>(), right = new ArrayList<>();
 	
-	for (T x : a)
-	    if(!compareTo(x, pivot)) left.add(x);
-	    else right.add(x);
+		for (T x : a)
+			if(!compareTo(x, pivot)) left.add(x);
+			else right.add(x);
         
         if(left.size()>1) left=ascending(left);
-	left.add(pivot);
+		left.add(pivot);
         left.addAll((right.size()>1) ? ascending(right) : right);
         
         return left;
@@ -38,15 +38,15 @@ abstract class QuickSort <T>
      */
     ArrayList <T> descending(ArrayList <T> a)
     {        
-        T pivot = a.remove(a.size()<3 ? 0 : getMedian(a.get(0),a.get(a.size()/2),a.get(a.size()-1),a.size()));
+        final T pivot = a.remove(a.size()<3 ? 0 : getMedian(a.get(0),a.get(a.size()/2),a.get(a.size()-1),a.size()));
         ArrayList <T> left = new ArrayList<>(), right = new ArrayList<>();
 	
-	for (T x : a)
-	    if(!compareTo(x, pivot)) right.add(x);
-	    else left.add(x);
+		for (T x : a)
+			if(!compareTo(x, pivot)) right.add(x);
+			else left.add(x);
         
         if(left.size()>1) left=descending(left);
-	left.add(pivot);
+		left.add(pivot);
         left.addAll((right.size()>1) ? descending(right) : right);
         
         return left;
@@ -83,27 +83,27 @@ abstract class QuickSort <T>
      */
     public static void main(String args[])
     {
-	//Create anonymous inner class to define compareTo function.
-	QuickSort<Integer> q = new QuickSort<Integer>()
-	{
-	    @Override
-	    boolean compareTo(Integer a, Integer b) {return a > b;}
-	};
+		//Create anonymous inner class to define compareTo function.
+		QuickSort<Integer> q = new QuickSort<Integer>()
+		{
+			@Override
+			boolean compareTo(Integer a, Integer b) {return a > b;}
+		};
         
         //Test mode chooses small input size, max value, and prints input and output.
-        boolean test = true;
+        boolean test = false;
 
-	//Create ArrayList
-	ArrayList<Integer> a = new ArrayList<>();
+		//Create ArrayList
+		ArrayList<Integer> a = new ArrayList<>();
 
-	//Size of array
-	int size = test ? 30 : (int)Math.pow(2, 20);
+		//Size of array
+		int size = test ? 30 : (int)Math.pow(2, 20);
 
-	//Maximum value of elements
-	int maxVal = test ? 100 : Integer.MAX_VALUE;
+		//Maximum value of elements
+		int maxVal = test ? 100 : Integer.MAX_VALUE;
 
-	//Generate random integers.
-	for (int i = 0; i < size; i++) a.add((int)(maxVal*Math.random()));
+		//Generate random integers.
+		for (int i = 0; i < size; i++) a.add((int)(maxVal*Math.random()));
         
         //Sort.
         System.out.print(test ? a + "\n" : "");
@@ -118,6 +118,6 @@ abstract class QuickSort <T>
                 return;
             }
         
-	System.out.print("Sorted.\n");
+		System.out.print("Sorted.\n");
     }
 }
