@@ -16,7 +16,7 @@ abstract class QuickSort <T>
      */
     ArrayList <T> ascending(ArrayList <T> a)
     {
-        T pivot = a.remove(getMedian(a.get(0),a.get(a.size()/2),a.get(a.size()-1),a.size()));
+        T pivot = a.remove(a.size()<3 ? 0 : getMedian(a.get(0),a.get(a.size()/2),a.get(a.size()-1),a.size()));
         ArrayList <T> left = new ArrayList<>(), right = new ArrayList<>();
 	
 	for (T x : a)
@@ -38,7 +38,7 @@ abstract class QuickSort <T>
      */
     ArrayList <T> descending(ArrayList <T> a)
     {        
-        T pivot = a.remove(getMedian(a.get(0),a.get(a.size()/2),a.get(a.size()-1),a.size()));
+        T pivot = a.remove(a.size()<3 ? 0 : getMedian(a.get(0),a.get(a.size()/2),a.get(a.size()-1),a.size()));
         ArrayList <T> left = new ArrayList<>(), right = new ArrayList<>();
 	
 	for (T x : a)
@@ -64,7 +64,7 @@ abstract class QuickSort <T>
      */
     private int getMedian(T a, T b, T c, int size)
     {
-        return size<3 ? 0 : (compareTo(a,b) ? (compareTo(c,a) ? 0 : (compareTo(c,b) ? size-1 : size/2)) : (compareTo(c,b) ? (size/2) : (compareTo(c,a) ? size-1 : 0)));
+        return compareTo(a,b) ? (compareTo(c,a) ? 0 : (compareTo(c,b) ? size-1 : size/2)) : (compareTo(c,b) ? (size/2) : (compareTo(c,a) ? size-1 : 0));
     }
     
     /**
