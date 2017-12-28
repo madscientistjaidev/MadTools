@@ -16,8 +16,6 @@ abstract class QuickSort <T>
      */
     ArrayList <T> ascending(ArrayList <T> a)
     {
-	if(a.size()<=1) return a;
-        
         T pivot = a.remove(getMedian(a.get(0),a.get(a.size()/2),a.get(a.size()-1),a.size()));
         ArrayList <T> left = new ArrayList<>(), right = new ArrayList<>();
 	
@@ -25,9 +23,9 @@ abstract class QuickSort <T>
 	    if(!compareTo(x, pivot)) left.add(x);
 	    else right.add(x);
         
-        left = ascending(left);
+        if(left.size()>1) left=ascending(left);
 	left.add(pivot);
-        left.addAll(ascending(right));
+        left.addAll((right.size()>1) ? ascending(right) : right);
         
         return left;
     }
@@ -40,8 +38,6 @@ abstract class QuickSort <T>
      */
     ArrayList <T> descending(ArrayList <T> a)
     {        
-        if(a.size()<=1) return a;
-        
         T pivot = a.remove(getMedian(a.get(0),a.get(a.size()/2),a.get(a.size()-1),a.size()));
         ArrayList <T> left = new ArrayList<>(), right = new ArrayList<>();
 	
@@ -49,9 +45,9 @@ abstract class QuickSort <T>
 	    if(!compareTo(x, pivot)) right.add(x);
 	    else left.add(x);
         
-        left = descending(left);
+        if(left.size()>1) left=descending(left);
 	left.add(pivot);
-        left.addAll(descending(right));
+        left.addAll((right.size()>1) ? descending(right) : right);
         
         return left;
     }
