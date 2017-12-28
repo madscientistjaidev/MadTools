@@ -6,8 +6,8 @@ import java.util.ArrayList;
  * @author Mad Scientist
  * @param <T>
  */
-abstract class MergeSort<T> {
-
+abstract class MergeSort<T>
+{
     /**
      * Accepts an ArrayList and returns one sorted in ascending order.
      *
@@ -16,13 +16,10 @@ abstract class MergeSort<T> {
      */
     ArrayList<T> ascending(ArrayList<T> a)
     {
-	if(a.size()<=1) return a;
+        ArrayList<T> left = new ArrayList(a.subList(0,a.size()/2)), right = new ArrayList(a.subList((a.size()/2),a.size())), result = new ArrayList<>();
 
-        int l = a.size();
-        ArrayList<T> left = new ArrayList(a.subList(0,l/2)), right = new ArrayList(a.subList((l/2),l)), result = new ArrayList<>();
-
-        left = ascending(left);
-        right = ascending(right);
+        if(left.size()>1) left=ascending(left);
+        if(right.size()>1) right=ascending(right);
 
         while(!left.isEmpty() && !right.isEmpty()) result.add(!compareTo(left.get(0),right.get(0)) ? left.remove(0) : right.remove(0));
         
@@ -40,13 +37,10 @@ abstract class MergeSort<T> {
      */
     ArrayList<T> descending(ArrayList<T> a)
     {
-        if(a.size()<=1) return a;
+        ArrayList<T> left = new ArrayList(a.subList(0,a.size()/2)), right = new ArrayList(a.subList((a.size()/2),a.size())), result = new ArrayList<>();
 
-        int l = a.size();
-        ArrayList<T> left = new ArrayList(a.subList(0,l/2)), right = new ArrayList(a.subList((l/2),l)), result = new ArrayList<>();
-
-        left = descending(left);
-        right = descending(right);
+        if(left.size()>1) left=ascending(left);
+        if(right.size()>1) right=ascending(right);
 
         while(!left.isEmpty() && !right.isEmpty()) result.add(!compareTo(left.get(0),right.get(0)) ? left.remove(0) : right.remove(0));
         
