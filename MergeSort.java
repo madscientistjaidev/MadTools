@@ -51,9 +51,7 @@ abstract class MergeSort<T>
 	}
 
 	/**
-	 * This function returns true if a>b. It is meant to make sorting possible
-	 * no matter what types or objects are used. It should be implemented in a
-	 * sub class or anonymous inner class.
+	 * Returns true if a>b. Should be implemented in a sub class or anonymous inner class.
 	 *
 	 * @param a
 	 * @param b
@@ -62,8 +60,7 @@ abstract class MergeSort<T>
 	abstract boolean compareTo(T a, T b);
 
 	/**
-	 * Example for ~1 million randomly generated integers of size 0 to
-	 * Integer.MAX_VALUE.
+	 * Example for ~1 million randomly generated integers of size 0 to Integer.MAX_VALUE.
 	 *
 	 * @param args
 	 */
