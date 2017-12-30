@@ -35,6 +35,48 @@ class HeapSort <T>
 		abstract boolean compareTo(T a, T b);
 	}
 	
+	public static void main(String args[])
+    	{
+		//Create anonymous inner class to define compareTo function.
+		NodeComparator <Integer> nc = new NodeComparator<Integer>()
+		{
+			@Override
+			boolean compareTo(Integer a, Integer b) {return a > b;}
+		};
+		
+		HeapSort<Integer> h = new HeapSort<>(nc);
+        
+        	//Test mode chooses small input size, max value, and prints input and output.
+        	boolean test = true;
+
+		//Create ArrayList
+		ArrayList<Integer> a = new ArrayList<>();
+
+		//Size of array
+		int size = test ? 30 : (int)Math.pow(2, 26);
+
+		//Maximum value of elements
+		int maxVal = test ? 100 : Integer.MAX_VALUE;
+
+		//Generate random integers.
+		for (int i = 0; i < size; i++) a.add((int)(maxVal*Math.random()));
+        
+        	//Sort.
+        	System.out.print(test ? a + "\n" : "");
+        	a = h.ascending(a);
+        	System.out.print(test ? a + "\n" : "");
+        
+        	//Check if result is sorted.
+        	for(int i = 0; i < a.size()-1; i++)
+            		if(nc.compareTo(a.get(i),a.get(i+1)))
+            		{
+                	System.out.print("Not Sorted.\n");
+                	return;
+            		}
+        
+		System.out.print("Sorted.\n");
+    	}
+	
 	class Node <T>
 	{
 		private final T val;
