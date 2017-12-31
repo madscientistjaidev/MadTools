@@ -1,3 +1,5 @@
+package MadTools;
+
 import java.util.ArrayList;
 
 /**
@@ -11,8 +13,7 @@ abstract class HeapSort <T>
 
     ArrayList<T> ascending(ArrayList<T> a)
     {
-        Node <T> root = new Node<>(a.remove(0));
-        Node <T> curr = root;
+        Node <T> root = new Node<>(a.remove(0)), curr;
 
         for(T x : a)
         {
@@ -41,28 +42,23 @@ abstract class HeapSort <T>
                 }
             }
         }
+		
+		a = null;
 
         return root.getAscending();
     }
-    
-    ArrayList<T> descending(ArrayList<T> a)
-	{
-		Node <T> root = new Node<>(a.remove(0),nc);
-		a.forEach((x) -> {root.add(x);});
-		return root.getDescending();
-	}
 
     public static void main(String args[])
     {
         //Create anonymous inner class to define compareTo function.
-        HeapSort<Integer> h = new HeapSort<>()
+        HeapSort<Integer> h = new HeapSort<Integer>()
         {
             @Override
             boolean compareTo(Integer a, Integer b) {return a > b;}
         };
 
         //Test mode chooses small input size, max value, and prints input and output.
-        boolean test = true;
+        boolean test = false;
 
         //Create ArrayList
         ArrayList<Integer> a = new ArrayList<>();
@@ -91,7 +87,7 @@ abstract class HeapSort <T>
 
         System.out.print("Sorted.\n");
     }
-    
+
     class Node <T>
     {
         private final T val;
@@ -105,14 +101,17 @@ abstract class HeapSort <T>
             left = null;
             right = null;
         }
-	
+
         ArrayList<T> getAscending()
         {
             ArrayList<T> result = new ArrayList<>();
             if(left!=null) result.addAll(left.getAscending());
             result.add(val);
             if(right!=null) result.addAll(right.getAscending());
-
+			
+	    	left=null;
+	    	right = null;
+			
             return result;
         }
 
