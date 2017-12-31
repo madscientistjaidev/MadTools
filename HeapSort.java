@@ -7,17 +7,6 @@ import java.util.ArrayList;
  */
 abstract class HeapSort <T>
 {
-    NodeComparator<T> nc;
-	
-	HeapSort()
-	{
-	}
-	
-	HeapSort(NodeComparator<T> nc)
-	{
-		this.nc = nc;
-	}
-    
     abstract boolean compareTo(T a, T b);
 
     ArrayList<T> ascending(ArrayList<T> a)
@@ -101,11 +90,6 @@ abstract class HeapSort <T>
             }
 
         System.out.print("Sorted.\n");
-    }
-
-    static abstract class NodeComparator <T>
-    {
-	abstract boolean compareTo(T a, T b);
     }
     
     class Node <T>
