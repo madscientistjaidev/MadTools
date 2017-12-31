@@ -106,21 +106,6 @@ abstract class HeapSort <T>
             right = null;
         }
 	
-	void add(T newVal)
-	{
-		if(nc.compareTo(val, newVal))
-		{
-			if(left==null) left = new Node<>(newVal,nc);
-			else left.add(newVal);
-		}
-			
-		else
-		{
-			if(right==null) right = new Node<>(newVal,nc);
-			else right.add(newVal);
-		}
-	}
-
         ArrayList<T> getAscending()
         {
             ArrayList<T> result = new ArrayList<>();
