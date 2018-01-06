@@ -14,10 +14,15 @@ abstract class HeapSort <T>
 	ArrayList<T> ascending(ArrayList<T> a)
 	{
 		Node <T> root = buildHeap(a);
-		
 		a = null;
-
 		return root.getAscending();
+	}
+	
+	ArrayList<T> descending(ArrayList<T> a)
+	{
+		Node <T> root = buildHeap(a);
+		a = null;
+		return root.getDescending();
 	}
 	
 	private Node <T> buildHeap(ArrayList<T> a)
