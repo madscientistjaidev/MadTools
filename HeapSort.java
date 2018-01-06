@@ -15,12 +15,7 @@ abstract class HeapSort <T>
 	 * @param a
 	 * @return
 	 */
-	ArrayList<T> ascending(ArrayList<T> a)
-	{
-		Node <T> root = buildHeap(a);
-		a = null;
-		return root.getAscending();
-	}
+	ArrayList<T> ascending(ArrayList<T> a) {return buildHeap(a).getAscending();}
 	
 	/**
 	 * Accepts an ArrayList and returns one sorted in descending order.
@@ -28,12 +23,7 @@ abstract class HeapSort <T>
 	 * @param a
 	 * @return
 	 */
-	ArrayList<T> descending(ArrayList<T> a)
-	{
-		Node <T> root = buildHeap(a);
-		a = null;
-		return root.getDescending();
-	}
+	ArrayList<T> descending(ArrayList<T> a) {return buildHeap(a).getDescending();}
 	
 	/**
 	 * Builds heap from ArrayList and returns root node.
@@ -72,6 +62,7 @@ abstract class HeapSort <T>
 			}
 		}
 		
+		a=null;
 		return root;
 	}
 	
