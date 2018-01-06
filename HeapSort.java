@@ -13,6 +13,15 @@ abstract class HeapSort <T>
 
 	ArrayList<T> ascending(ArrayList<T> a)
 	{
+		Node <T> root = buildHeap(a);
+		
+		a = null;
+
+		return root.getAscending();
+	}
+	
+	private Node <T> buildHeap(ArrayList<T> a)
+	{
 		Node <T> curr, root = new Node<>(a.remove(a.size()<3 ? 0 : getMedian(a.get(0),a.get(a.size()/2),a.get(a.size()-1),a.size())));
 
 		for(T x : a)
@@ -43,9 +52,7 @@ abstract class HeapSort <T>
 			}
 		}
 		
-		a = null;
-
-		return root.getAscending();
+		return root;
 	}
 	
 	private int getMedian(T a, T b, T c, int size)
@@ -63,7 +70,7 @@ abstract class HeapSort <T>
 		};
 
 		//Test mode chooses small input size, max value, and prints input and output.
-		boolean test = false;
+		boolean test = true;
 
 		//Create ArrayList
 		ArrayList<Integer> a = new ArrayList<>();
@@ -126,6 +133,9 @@ abstract class HeapSort <T>
 			if(right!=null) result.addAll(right.getDescending());
 			result.add(val);
 			if(left!=null) result.addAll(left.getDescending());
+			
+			left=null;
+			right = null;
 
 			return result;
 		}
