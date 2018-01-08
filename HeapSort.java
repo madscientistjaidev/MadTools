@@ -67,7 +67,7 @@ abstract class HeapSort <T>
 	}
 	
 	/**
-	 * Gets median of 3 elements to choose pivot.
+	 * Gets median of 3 elements to choose root.
 	 * Compares first, middle, and last elements, and returns index of median.
 	 * 
 	 * @param a
@@ -105,13 +105,13 @@ abstract class HeapSort <T>
 		};
 
 		//Test mode chooses small input size, max value, and prints input and output.
-		boolean test = true;
+		boolean test = false;
 
 		//Create ArrayList
 		ArrayList<Integer> a = new ArrayList<>();
 
 		//Size of array
-		int size = test ? 30 : (int)Math.pow(2, 20);
+		int size = test ? 30 : (int)Math.pow(2, 26);
 
 		//Maximum value of elements
 		int maxVal = test ? 100 : Integer.MAX_VALUE;
@@ -125,7 +125,7 @@ abstract class HeapSort <T>
 		System.out.print(test ? a + "\n" : "");
 
 		//Check if result is sorted.
-		for(int i = 0; i < a.size()-1; i++)
+		for(int i = 0; i < size-1; i++)
 			if(h.compareTo(a.get(i),a.get(i+1)))
 			{
 				System.out.print("Not Sorted.\n");
@@ -135,13 +135,26 @@ abstract class HeapSort <T>
 		System.out.print("Sorted.\n");
 	}
 
+	/**
+	 * Used to build heap.
+	 * @param <T> 
+	 */
 	class Node <T>
 	{
+		/**
+		 * Value of current node.
+		 */
 		private final T val;
 
-		Node <T> left;
-		Node <T> right;
+		/**
+		 * Children of current node.
+		 */
+		Node <T> left, right;
 
+		/**
+		 * Initializes current node
+		 * @param val 
+		 */
 		Node(T val)
 		{
 			this.val = val;
@@ -149,6 +162,10 @@ abstract class HeapSort <T>
 			right = null;
 		}
 
+		/**
+		 * Gets sub-heap elements in ascending order.
+		 * @return 
+		 */
 		ArrayList<T> getAscending()
 		{
 			ArrayList<T> result = new ArrayList<>();
@@ -162,6 +179,10 @@ abstract class HeapSort <T>
 			return result;
 		}
 
+		/**
+		 * Gets sub-heap elements in descending order.
+		 * @return 
+		 */
 		ArrayList<T> getDescending()
 		{
 			ArrayList<T> result = new ArrayList<>();
@@ -175,4 +196,4 @@ abstract class HeapSort <T>
 			return result;
 		}
 	}
-}
+}	
