@@ -16,13 +16,9 @@ abstract class MergeSort<T>
 	 */	
 	ArrayList<T> ascending(ArrayList<T> a)
 	{
-		ArrayList<T> left = new ArrayList(), right = new ArrayList();
-		int l = a.size();
-		
-		for(int i = 0; i < l/2; i++) left.add(a.get(i));
-		for(int i = l/2; i < l; i++) right.add(a.get(i));
-
+		ArrayList<T> left = new ArrayList(a.subList(0,a.size()/2)), right = new ArrayList(a.subList((a.size()/2),a.size()));
 		a = new ArrayList<>();
+		
 		if(left.size()>1) left=ascending(left);
 		if(right.size()>1) right=ascending(right);
 		
@@ -83,7 +79,7 @@ abstract class MergeSort<T>
 		};
 		
 		//Test mode chooses small input size, max value, and prints input and output.
-		boolean test = true;
+		boolean test = false;
 
 		//Create ArrayList
 		ArrayList<Integer> a = new ArrayList<>();
