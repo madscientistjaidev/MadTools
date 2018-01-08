@@ -42,17 +42,22 @@ abstract class MergeSort<T>
 	 */
 	ArrayList<T> descending(ArrayList<T> a)
 	{
-		ArrayList<T> left = new ArrayList(a.subList(0,a.size()/2)), right = new ArrayList(a.subList((a.size()/2),a.size())), result = new ArrayList<>();
-
+		ArrayList<T> left = new ArrayList(a.subList(0,a.size()/2)), right = new ArrayList(a.subList((a.size()/2),a.size()));
+		a = new ArrayList<>();
+		
 		if(left.size()>1) left=ascending(left);
 		if(right.size()>1) right=ascending(right);
-
-		while(!left.isEmpty() && !right.isEmpty()) result.add(!compareTo(left.get(0),right.get(0)) ? left.remove(0) : right.remove(0));
 		
-		if(!left.isEmpty()) result.addAll(left);
-		if(!right.isEmpty()) result.addAll(right);
+		int leftPtr=0, rightPtr=0, leftSize = left.size(), rightSize = right.size();
+		
+		while(leftPtr<leftSize && rightPtr<rightSize)
+			if(compareTo(left.get(leftPtr),right.get(rightPtr))) a.add(left.get(leftPtr++));
+			else a.add(right.get(rightPtr++));
 
-		return result;
+		if(leftPtr<leftSize) while(leftPtr<leftSize) a.add(left.get(leftPtr++));
+		if(rightPtr<rightSize) while(rightPtr<rightSize) a.add(right.get(rightPtr++));
+		
+		return a;
 	}
 
 	/**
