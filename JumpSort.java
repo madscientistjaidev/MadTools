@@ -8,14 +8,14 @@ import java.util.ArrayList;
  */
 abstract class JumpSort<T>
 {
-    /**
+	/**
 	 * Accepts an ArrayList and returns one sorted in ascending order.
 	 *
 	 * @param a
 	 * @return
 	 */
 	ArrayList <T> ascending(ArrayList<T> a)
-    {
+	{
 		if(a==null) return new ArrayList<>();
 		if(a.size()<2) return a;
 
@@ -40,6 +40,25 @@ abstract class JumpSort<T>
 					for(int i = 0; i<a.size(); i++)
 						if(!compareTo(run.get(run.size()-1),a.get(i)))
 							run.add(a.remove(i--));
+				}
+
+				//Run merging - EXPERIMENTAL
+				if(false && !runs.isEmpty())
+				{
+					for(ArrayList <T> z : runs)
+					{
+						if(compareTo(run.get(0),z.get(z.size()-1)))
+						{
+							z.addAll(run);
+							break;
+						}
+
+						else if(compareTo(z.get(0),run.get(run.size()-1)))
+						{
+							z.addAll(0, run);
+							break;
+						}
+					}
 				}
 
 				runs.add(run);
@@ -87,24 +106,24 @@ abstract class JumpSort<T>
 			}
 
 		return runs.get(0);
-    }
+	}
 
-    /**
+	/**
 	 * Returns true if a>b. Should be implemented in a sub class or anonymous inner class.
 	 *
 	 * @param a
 	 * @param b
 	 * @return
 	 */
-    abstract boolean compareTo(T a, T b);
+	abstract boolean compareTo(T a, T b);
 
-    /**
-     * Example for ~1 million randomly generated integers of size 0 to Integer.MAX_VALUE.
-     *
-     * @param args
-     */
-    public static void main(String args[])
-    {
+	/**
+	 * Example for ~1 million randomly generated integers of size 0 to Integer.MAX_VALUE.
+	 *
+	 * @param args
+	 */
+	public static void main(String args[])
+	{
 		//Create anonymous inner class to define compareTo function.
 		JumpSort<Integer> j = new JumpSort<Integer>()
 		{
@@ -140,5 +159,5 @@ abstract class JumpSort<T>
 				}
 
 		System.out.print("Sorted.\n");
-    }
+	}
 }
