@@ -18,6 +18,9 @@ public class Orienteering
 	 */
 	private static ArrayList<Integer[]> visited;
 
+	/**
+	 * Initializes solver.
+	 */
 	Orienteering() {visited = new ArrayList<>();}
 
 	/**
@@ -54,7 +57,7 @@ public class Orienteering
 	}
 
 	/**
-	 * Recursively finds path.
+	 * Recursively finds path using DFS.
 	 * Returns some value greater than max if path is not found, or if max recursion depth is reached.
 	 * @param grid
 	 * @param sourceX
@@ -109,6 +112,18 @@ public class Orienteering
 		return res[0]+1;
 	}
 
+	/**
+	 * EXPERIMENTAL AND INCOMPLETE
+	 * Recursively finds path using BFS.
+	 * Returns some value greater than max if path is not found, or if max recursion depth is reached.
+	 * @param grid
+	 * @param sourceX
+	 * @param sourceY
+	 * @param currX
+	 * @param currY
+	 * @param depth
+	 * @return 
+	 */
 	private int findBFS(char[][]grid, int sourceX, int sourceY, int currX, int currY, int depth)
 	{
 		Integer currCoord[] = {currX,currY,0};
