@@ -31,29 +31,15 @@ public class Orienteering
 	public int findDist(char[][] grid)
 	{
 		//Coordinates of source
-		int sourceX=-1, sourceY=-1;
+		int dist;
 
 		//Finding source
 		for(int i=0; i < grid.length; i++)
-		{
 			for(int j=0; j<grid[0].length; j++)
 				if(grid[i][j]=='*')
-				{
-					sourceX=i;
-					sourceY=j;
-					break;
-				}
+					return ((dist=findDFS(grid,i,j,i,j,0))>grid.length*grid[0].length) ? -1 : dist-1;
 
-			if(sourceX!=-1) break;
-		}
-
-		if(sourceX==-1) return -1;
-
-		//Find distance.
-		int dist = findDFS(grid, sourceX, sourceY, sourceX, sourceY, 0);
-
-		//Return distance if found.
-		return (dist>grid.length*grid[0].length) ? -1 : dist-1;
+		return -1;
 	}
 
 	/**
