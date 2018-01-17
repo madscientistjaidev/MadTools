@@ -14,16 +14,6 @@ import java.util.Arrays;
 public class Orienteering
 {
 	/**
-	 * Stores list of visited locations.
-	 */
-	private static ArrayList<Integer[]> visited;
-
-	/**
-	 * Initializes solver.
-	 */
-	Orienteering() {visited = new ArrayList<>();}
-
-	/**
 	 * Accepts a board and returns the distance from source to destination if it exists, or -1 if it doesn't.
 	 * @param grid
 	 * @return
@@ -55,11 +45,7 @@ public class Orienteering
 	 */
 	private int findDFS(char[][]grid, int sourceX, int sourceY, int currX, int currY, int depth)
 	{
-		//Add current coordinates to visited list.
-		Integer[] currCoord = {currX,currY,depth};
-		visited.add(currCoord);
-
-		//If food found.
+		//If destination found.
 		if(grid[currX][currY]=='#') return 1;
 
 		//Theoretical maximum depth of recursion.
@@ -75,21 +61,17 @@ public class Orienteering
 		int[] res = new int[4];
 
 		//Depth First Search in each direction.
-		res[0] = //(visited.stream().anyMatch((coord) -> (coord[0]==currX-1 && coord[1]==currY))) ||
-					(currX==0) || (sourceX==currX-1 && sourceY==currY) || (grid[currX-1][currY]=='X')
-					? max+1 : findDFS(grid, currX, currY, currX-1, currY, depth+1);
+		res[0] = (currX==0) || (sourceX==currX-1 && sourceY==currY) || (grid[currX-1][currY]=='X')
+				? max+1 : findDFS(grid, currX, currY, currX-1, currY, depth+1);
 
-		res[1] = //(visited.stream().anyMatch((coord) -> (coord[0]==currX+1 && coord[1]==currY))) ||
-					(currX==grid.length-1) || (sourceX==currX+1 && sourceY==currY) || (grid[currX+1][currY]=='X')
-					? max+1 : findDFS(grid, currX, currY, currX+1, currY, depth+1);
+		res[1] = (currX==grid.length-1) || (sourceX==currX+1 && sourceY==currY) || (grid[currX+1][currY]=='X')
+				? max+1 : findDFS(grid, currX, currY, currX+1, currY, depth+1);
 
-		res[2] = //(visited.stream().anyMatch((coord) -> (coord[0]==currX && coord[1]==currY-1)))  ||
-					(currY==0) || (sourceX==currX && sourceY==currY-1) || (grid[currX][currY-1]=='X')
-					? max+1 : findDFS(grid, currX, currY, currX, currY-1, depth+1);
+		res[2] = (currY==0) || (sourceX==currX && sourceY==currY-1) || (grid[currX][currY-1]=='X')
+				? max+1 : findDFS(grid, currX, currY, currX, currY-1, depth+1);
 
-		res[3] = //(visited.stream().anyMatch((coord) -> (coord[0]==currX && coord[1]==currY+1))) ||
-					(currY==grid[0].length-1) || (sourceX==currX && sourceY==currY+1) || (grid[currX][currY+1]=='X')
-					? max+1 : findDFS(grid, currX, currY, currX, currY+1, depth+1);
+		res[3] = (currY==grid[0].length-1) || (sourceX==currX && sourceY==currY+1) || (grid[currX][currY+1]=='X')
+				? max+1 : findDFS(grid, currX, currY, currX, currY+1, depth+1);
 
 		//Find minimum of four distances.
 		Arrays.sort(res);
@@ -112,6 +94,8 @@ public class Orienteering
 	 */
 	private int findBFS(char[][]grid, int sourceX, int sourceY, int currX, int currY, int depth)
 	{
+		ArrayList<Integer[]> visited = new ArrayList<>();
+		
 		Integer currCoord[] = {currX,currY,0};
 
 		visited.add(currCoord);
