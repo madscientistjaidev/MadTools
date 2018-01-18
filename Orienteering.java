@@ -14,6 +14,11 @@ import java.util.Arrays;
 public class Orienteering
 {
 	/**
+	 * Stores list of visited locations.
+	 */
+	private static ArrayList<Integer[]> visited;
+
+	/**
 	 * Accepts a board and returns the distance from source to destination if it exists, or -1 if it doesn't.
 	 * @param grid
 	 * @return
@@ -22,14 +27,32 @@ public class Orienteering
 	{
 		//Coordinates of source
 		int dist;
+		
+		visited = new ArrayList<>();
 
 		//Finding source
-		for(int i=0; i < grid.length; i++)
-			for(int j=0; j<grid[0].length; j++)
-				if(grid[i][j]=='*')
-					return ((dist=findDFS(grid,i,j,i,j,0))>grid.length*grid[0].length) ? -1 : dist-1;
-
+		for(int i=0; i < grid.length; i++) for(int j=0; j<grid[0].length; j++)
+				if(grid[i][j]=='*') return ((dist=findDFS(grid,i,j,0))>grid.length*grid[0].length) ? -1 : dist-1;
+		
 		return -1;
+	}
+	
+	private boolean isVisited(int x, int y, int depth)
+	{
+		return visited.stream().anyMatch((point) -> (point[0]==x && point[1]==y && point[2]<=depth));
+	}
+	
+	void addToVisited(int x, int y, int depth)
+	{
+		for(Integer[] point : visited)
+			if(point[0]==x && point[1]==y)
+			{
+				point[2]=depth;
+				return;
+			}
+		
+		Integer[] newPoint = {x,y,depth};
+		visited.add(newPoint);
 	}
 
 	/**
@@ -43,8 +66,10 @@ public class Orienteering
 	 * @param depth
 	 * @return 
 	 */
-	private int findDFS(char[][]grid, int sourceX, int sourceY, int currX, int currY, int depth)
+	private int findDFS(char[][]grid, int currX, int currY, int depth)
 	{
+		addToVisited(currX,currY,depth);
+
 		//If destination found.
 		if(grid[currX][currY]=='#') return 1;
 
@@ -61,17 +86,17 @@ public class Orienteering
 		int[] res = new int[4];
 
 		//Depth First Search in each direction.
-		res[0] = (currX==0) || (sourceX==currX-1 && sourceY==currY) || (grid[currX-1][currY]=='X')
-				? max+1 : findDFS(grid, currX, currY, currX-1, currY, depth+1);
+		res[0] = (currX==0) || isVisited(currX-1, currY, depth+1) || (grid[currX-1][currY]=='X')
+					? max+1 : findDFS(grid, currX-1, currY, depth+1);
 
-		res[1] = (currX==grid.length-1) || (sourceX==currX+1 && sourceY==currY) || (grid[currX+1][currY]=='X')
-				? max+1 : findDFS(grid, currX, currY, currX+1, currY, depth+1);
+		res[1] = (currX==grid.length-1) || isVisited(currX+1, currY, depth+1) || (grid[currX+1][currY]=='X')
+					? max+1 : findDFS(grid, currX+1, currY, depth+1);
 
-		res[2] = (currY==0) || (sourceX==currX && sourceY==currY-1) || (grid[currX][currY-1]=='X')
-				? max+1 : findDFS(grid, currX, currY, currX, currY-1, depth+1);
+		res[2] = (currY==0) || isVisited(currX, currY-1, depth+1) || (grid[currX][currY-1]=='X')
+					? max+1 : findDFS(grid, currX, currY-1, depth+1);
 
-		res[3] = (currY==grid[0].length-1) || (sourceX==currX && sourceY==currY+1) || (grid[currX][currY+1]=='X')
-				? max+1 : findDFS(grid, currX, currY, currX, currY+1, depth+1);
+		res[3] = (currY==grid[0].length-1) || isVisited(currX, currY+1, depth+1) || (grid[currX][currY+1]=='X')
+					? max+1 : findDFS(grid, currX, currY+1, depth+1);
 
 		//Find minimum of four distances.
 		Arrays.sort(res);
