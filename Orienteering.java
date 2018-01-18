@@ -17,6 +17,7 @@ public class Orienteering
 	 * Stores list of visited locations.
 	 */
 	private static ArrayList<Integer[]> visited;
+	private char[][] grid;
 
 	/**
 	 * Accepts a board and returns the distance from source to destination if it exists, or -1 if it doesn't.
@@ -25,14 +26,14 @@ public class Orienteering
 	 */
 	public int findDist(char[][] grid)
 	{
-		//Coordinates of source
+		this.grid = grid;
 		int dist;
 		
 		visited = new ArrayList<>();
 
 		//Finding source
 		for(int i=0; i < grid.length; i++) for(int j=0; j<grid[0].length; j++)
-				if(grid[i][j]=='*') return ((dist=findDFS(grid,i,j,0))>grid.length*grid[0].length) ? -1 : dist-1;
+				if(grid[i][j]=='*') return ((dist=findDFS(i,j,0))>grid.length*grid[0].length) ? -1 : dist-1;
 		
 		return -1;
 	}
@@ -48,7 +49,7 @@ public class Orienteering
 	 * @param depth
 	 * @return 
 	 */
-	private int findDFS(char[][]grid, int currX, int currY, int depth)
+	private int findDFS(int currX, int currY, int depth)
 	{
 		addToVisited(currX,currY,depth);
 
@@ -69,16 +70,16 @@ public class Orienteering
 
 		//Depth First Search in each direction.
 		res[0] = (currX==0) || isVisited(currX-1, currY, depth+1) || (grid[currX-1][currY]=='X')
-					? max+1 : findDFS(grid, currX-1, currY, depth+1);
+					? max+1 : findDFS(currX-1, currY, depth+1);
 
 		res[1] = (currX==grid.length-1) || isVisited(currX+1, currY, depth+1) || (grid[currX+1][currY]=='X')
-					? max+1 : findDFS(grid, currX+1, currY, depth+1);
+					? max+1 : findDFS(currX+1, currY, depth+1);
 
 		res[2] = (currY==0) || isVisited(currX, currY-1, depth+1) || (grid[currX][currY-1]=='X')
-					? max+1 : findDFS(grid, currX, currY-1, depth+1);
+					? max+1 : findDFS(currX, currY-1, depth+1);
 
 		res[3] = (currY==grid[0].length-1) || isVisited(currX, currY+1, depth+1) || (grid[currX][currY+1]=='X')
-					? max+1 : findDFS(grid, currX, currY+1, depth+1);
+					? max+1 : findDFS(currX, currY+1, depth+1);
 
 		//Find minimum of four distances.
 		Arrays.sort(res);
