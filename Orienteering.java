@@ -36,37 +36,6 @@ public class Orienteering
 		
 		return -1;
 	}
-	
-	/**
-	 * Returns true if point has been visited at a shallower or equal depth.
-	 * @param x
-	 * @param y
-	 * @param depth
-	 * @return 
-	 */
-	private boolean isVisited(int x, int y, int depth)
-	{
-		return visited.stream().anyMatch((point) -> (point[0]==x && point[1]==y && point[2]<=depth));
-	}
-	
-	/**
-	 * Adds point to visited if unseen, or updates depth if seen.
-	 * @param x
-	 * @param y
-	 * @param depth 
-	 */
-	void addToVisited(int x, int y, int depth)
-	{
-		for(Integer[] point : visited)
-			if(point[0]==x && point[1]==y)
-			{
-				point[2]=depth;
-				return;
-			}
-		
-		Integer[] newPoint = {x,y,depth};
-		visited.add(newPoint);
-	}
 
 	/**
 	 * Recursively finds path using DFS.
@@ -116,6 +85,37 @@ public class Orienteering
 
 		//Return.
 		return res[0]+1;
+	}
+	
+	/**
+	 * Returns true if point has been visited at a shallower or equal depth.
+	 * @param x
+	 * @param y
+	 * @param depth
+	 * @return 
+	 */
+	private boolean isVisited(int x, int y, int depth)
+	{
+		return visited.stream().anyMatch((point) -> (point[0]==x && point[1]==y && point[2]<=depth));
+	}
+	
+	/**
+	 * Adds point to visited if unseen, or updates depth if seen.
+	 * @param x
+	 * @param y
+	 * @param depth 
+	 */
+	void addToVisited(int x, int y, int depth)
+	{
+		for(Integer[] point : visited)
+			if(point[0]==x && point[1]==y)
+			{
+				point[2]=depth;
+				return;
+			}
+		
+		Integer[] newPoint = {x,y,depth};
+		visited.add(newPoint);
 	}
 
 	/**
