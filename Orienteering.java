@@ -13,6 +13,9 @@ import java.util.Arrays;
  */
 public class Orienteering
 {
+	/**
+	 * Stores list of visited locations.
+	 */
 	private static ArrayList<Integer[]> seen;
 	
 	/**
@@ -89,11 +92,24 @@ public class Orienteering
 		return res[0]+1;
 	}
 	
+	/**
+	 * Returns true if point has been visited at a shallower or equal depth.
+	 * @param x
+	 * @param y
+	 * @param d
+	 * @return 
+	 */
 	private boolean isSeen(int x, int y, int d)
 	{
 		return seen.stream().anyMatch((pt) -> (pt[0]==x && pt[1]==y && pt[2]<=d));
 	}
 	
+	/**
+	 * Adds point to visited if unseen, or updates depth if seen.
+	 * @param x
+	 * @param y
+	 * @param d 
+	 */
 	void visit(int x, int y, int d)
 	{
 		for(Integer[] pt : seen)
