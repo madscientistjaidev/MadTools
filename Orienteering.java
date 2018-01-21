@@ -1,7 +1,7 @@
 package MadTools;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * Simple orienteering tool.
@@ -70,26 +70,19 @@ public class Orienteering
 		if(d>max) return max+1;
 
 		//Stores result of search in each direction. [l,r,u,d]
-		int[] res = new int[4];
+		ArrayList<Integer> res = new ArrayList<>();
 
 		//Depth First Search in each direction.
-		res[0] = (x==0) || isSeen(x-1, y, d+1) || (b[x-1][y]=='X')
-					? max+1 : findDFS(x-1, y, d+1);
+		if(!((x==0) || isSeen(x-1, y, d+1) || (b[x-1][y]=='X'))) res.add(findDFS(x-1, y, d+1));
+		if(!((x==b.length-1) || isSeen(x+1, y, d+1) || (b[x+1][y]=='X'))) res.add(findDFS(x+1, y, d+1));
+		if(!((y==0) || isSeen(x, y-1, d+1) || (b[x][y-1]=='X'))) res.add(findDFS(x, y-1, d+1));
+		if(!((y==b[0].length-1) || isSeen(x, y+1, d+1) || (b[x][y+1]=='X'))) res.add(findDFS(x, y+1, d+1));
 
-		res[1] = (x==b.length-1) || isSeen(x+1, y, d+1) || (b[x+1][y]=='X')
-					? max+1 : findDFS(x+1, y, d+1);
-
-		res[2] = (y==0) || isSeen(x, y-1, d+1) || (b[x][y-1]=='X')
-					? max+1 : findDFS(x, y-1, d+1);
-
-		res[3] = (y==b[0].length-1) || isSeen(x, y+1, d+1) || (b[x][y+1]=='X')
-					? max+1 : findDFS(x, y+1, d+1);
+		if(res.isEmpty()) return max+1;
 
 		//Find minimum of four distances.
-		Arrays.sort(res);
-
-		//Return.
-		return res[0]+1;
+		Collections.sort(res);
+		return res.get(0)+1;
 	}
 	
 	/**
@@ -129,11 +122,11 @@ public class Orienteering
 	 */
 	public static void main(String args[])
 	{
-		char[][] grid =		{
+		char[][] b1 =		{
 								{'*','#'}
 							};
 
-		char[][] grid2 =	{
+		char[][] b2 =	{
 								{'*','O','X','X','X','X','X','O','#'},
 								{'X','O','X','O','O','O','X','O','X'},
 								{'X','O','X','O','X','O','X','O','X'},
@@ -146,14 +139,14 @@ public class Orienteering
 								{'X','X','X','X','X','X','X','X','X'}
 							};
 
-		char[][] grid3 =	{
+		char[][] b3 =	{
 								{'X','X','X','X','X','X'},
 								{'X','*','O','O','O','X'},
 								{'X','O','O','#','O','X'},
 								{'X','X','X','X','X','X'}
 							};
 
-		char[][] grid4 =	{
+		char[][] b4 =	{
 								{'X','X','X','X','X'},
 								{'X','*','X','O','X'},
 								{'X','O','X','#','X'},
@@ -162,9 +155,9 @@ public class Orienteering
 
 		Orienteering o = new Orienteering();
 
-		System.out.println(o.findDist(grid));
-		System.out.println(o.findDist(grid2));
-		System.out.println(o.findDist(grid3));
-		System.out.println(o.findDist(grid4));
+		System.out.println(o.findDist(b1));
+		System.out.println(o.findDist(b2));
+		System.out.println(o.findDist(b3));
+		System.out.println(o.findDist(b4));
 	}
 }
