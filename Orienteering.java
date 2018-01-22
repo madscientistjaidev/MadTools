@@ -5,7 +5,7 @@ import java.util.Collections;
 
 /**
  * Simple orienteering tool.
- * The board is a character array, where O is an empty space, X is a blocked space, * is source, and # is destination.
+ * The board is a character array, where X is a blocked space, * is source, and # is destination.
  * Multiple destinations can exist, but only distance to the closest one is returned.
  * Multiple sources can exist, but only the first one will be fed to the algorithm.
  * Returns distance if path is found, or -1 if not found.
@@ -55,6 +55,7 @@ public class Orienteering
 	 */
 	private int findDFS(int x, int y, int d)
 	{
+		//Add to list of seen points.
 		visit(x,y,d);
 
 		//If destination found.
@@ -126,30 +127,42 @@ public class Orienteering
 								{'*','#'}
 							};
 
-		char[][] b2 =	{
-								{'*','O','X','X','X','X','X','O','#'},
-								{'X','O','X','O','O','O','X','O','X'},
-								{'X','O','X','O','X','O','X','O','X'},
-								{'X','O','X','O','X','O','X','O','X'},
-								{'X','O','X','O','X','O','X','O','X'},
-								{'X','O','X','O','X','O','X','O','X'},
-								{'X','O','X','O','X','O','X','O','X'},
-								{'X','O','X','O','X','O','X','O','X'},
-								{'X','O','O','O','X','O','O','O','X'},
-								{'X','X','X','X','X','X','X','X','X'}
+		char[][] b2 =		{
+								{'*',' ','X','X','X','X','X',' ','X','X','X','X','X',' ','X',' ','#'},
+								{'X',' ','X',' ',' ',' ',' ',' ','X',' ',' ',' ',' ',' ','X',' ','X'},
+								{'X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X'},
+								{'X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X'},
+								{'X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X'},
+								{'X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X'},
+								{'X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X'},
+								{'X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X'},
+								{'X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X'},
+								{'X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X'},
+								{'X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X'},
+								{'X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X'},
+								{'X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X'},
+								{'X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X'},
+								{'X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X'},
+								{'X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X'},
+								{'X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X'},
+								{'X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X'},
+								{'X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X'},
+								{'X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X'},
+								{'X',' ',' ',' ',' ',' ','X',' ',' ',' ',' ',' ','X',' ',' ',' ','X'},
+								{'X','X',' ','X','X','X','X','X',' ','X','X','X','X','X',' ','X','X'}
 							};
 
-		char[][] b3 =	{
+		char[][] b3 =		{
 								{'X','X','X','X','X','X'},
-								{'X','*','O','O','O','X'},
-								{'X','O','O','#','O','X'},
+								{'X','*',' ',' ',' ','X'},
+								{'X',' ',' ','#',' ','X'},
 								{'X','X','X','X','X','X'}
 							};
 
-		char[][] b4 =	{
+		char[][] b4 =		{
 								{'X','X','X','X','X'},
-								{'X','*','X','O','X'},
-								{'X','O','X','#','X'},
+								{'X','*','X',' ','X'},
+								{'X',' ','X','#','X'},
 								{'X','X','X','X','X'}
 							};
 
