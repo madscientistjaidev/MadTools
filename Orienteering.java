@@ -26,7 +26,7 @@ public class Orienteering
 	/**
 	 * Maximum search depth
 	 */
-	private int max;
+	private int m;
 	
 	/**
 	 * Board Dimensions
@@ -41,13 +41,13 @@ public class Orienteering
 	public int findDist(char[][] b)
 	{
 		this.b = b;
-		l=b.length; w=b[0].length; max=l*w;
+		l=b.length; w=b[0].length; m=l*w;
 		int dist;
 		
 		seen = new ArrayList<>();
 
-		for(int i=0; i < b.length; i++) for(int j=0; j<b[0].length; j++)
-				if(b[i][j]=='*') return ((dist=findDFS(i,j,0))>b.length*b[0].length) ? -1 : dist-1;
+		for(int i=0; i < l; i++) for(int j=0; j<w; j++)
+				if(b[i][j]=='*') return ((dist=DFS(i,j,0))>m) ? -1 : dist-1;
 		
 		return -1;
 	}
@@ -63,22 +63,22 @@ public class Orienteering
 	 * @param d
 	 * @return 
 	 */
-	private int findDFS(int x, int y, int d)
+	private int DFS(int x, int y, int d)
 	{
 		visit(x,y,d);
 
 		if(b[x][y]=='#') return 1;
-		if(b[x][y]=='X' || d>max) return max+1;
+		if(b[x][y]=='X' || d>m) return m+1;
 
-		ArrayList<Integer> res = new ArrayList<>();
+		ArrayList<Integer> r = new ArrayList<>();
 
-		if(!((x==0) || isSeen(x-1, y, d+1) || (b[x-1][y]=='X'))) res.add(findDFS(x-1, y, d+1));
-		if(!((x==l-1) || isSeen(x+1, y, d+1) || (b[x+1][y]=='X'))) res.add(findDFS(x+1, y, d+1));
-		if(!((y==0) || isSeen(x, y-1, d+1) || (b[x][y-1]=='X'))) res.add(findDFS(x, y-1, d+1));
-		if(!((y==w-1) || isSeen(x, y+1, d+1) || (b[x][y+1]=='X'))) res.add(findDFS(x, y+1, d+1));
+		if(!((x==0) || isSeen(x-1,y,d+1) || (b[x-1][y]=='X'))) r.add(DFS(x-1,y,d+1));
+		if(!((x==l-1) || isSeen(x+1,y,d+1) || (b[x+1][y]=='X'))) r.add(DFS(x+1,y,d+1));
+		if(!((y==0) || isSeen(x,y-1,d+1) || (b[x][y-1]=='X'))) r.add(DFS(x,y-1,d+1));
+		if(!((y==w-1) || isSeen(x,y+1,d+1) || (b[x][y+1]=='X'))) r.add(DFS(x,y+1,d+1));
 
-		Collections.sort(res);
-		return res.isEmpty() ? max+1 : res.get(0)+1;
+		Collections.sort(r);
+		return r.isEmpty() ? m+1 : r.get(0)+1;
 	}
 	
 	/**
