@@ -22,6 +22,16 @@ public class Orienteering
 	 * Board.
 	 */
 	private char[][] b;
+	
+	/**
+	 * Maximum search depth
+	 */
+	private int max;
+	
+	/**
+	 * Board Dimensions
+	 */
+	private int l,w;
 
 	/**
 	 * Accepts a board and returns the distance from source to destination if it exists, or -1 if it doesn't.
@@ -31,6 +41,7 @@ public class Orienteering
 	public int findDist(char[][] b)
 	{
 		this.b = b;
+		l=b.length; w=b[0].length; max=l*w;
 		int dist;
 		
 		seen = new ArrayList<>();
@@ -57,9 +68,6 @@ public class Orienteering
 		visit(x,y,d);
 
 		if(b[x][y]=='#') return 1;
-
-		int l=b.length, w=b[0].length, max=l*w;
-
 		if(b[x][y]=='X' || d>max) return max+1;
 
 		ArrayList<Integer> res = new ArrayList<>();
