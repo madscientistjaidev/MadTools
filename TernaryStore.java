@@ -15,7 +15,7 @@ public class TernaryStore<T>
 	 * Used to build heap.
 	 * @param <T> 
 	 */
-	class TernaryNode <T>
+	class TernaryNode<T>
 	{
 		/**
 		 * Value of current node.
@@ -27,7 +27,7 @@ public class TernaryStore<T>
 		 */
 		TernaryNode<T> left;
 		TernaryNode<T> center;
-		TernaryNode <T> right;
+		TernaryNode<T> right;
 
 		/**
 		 * Initializes current node
@@ -59,6 +59,27 @@ public class TernaryStore<T>
 			
 			if(right!=null) result.addAll(right.getAscending());
 			
+			return result;
+		}
+
+		/**
+		 * Gets sub-tree elements in descending order.
+		 * @return 
+		 */
+		ArrayList<T> getDescending()
+		{
+			ArrayList<T> result = new ArrayList<>();
+			if(right!=null) result.addAll(right.getDescending());
+			
+			result.add(val);
+			while(center!=null)
+			{
+				result.add(center.val);
+				center = center.center;
+			}
+			
+			if(left!=null) result.addAll(left.getDescending());
+
 			return result;
 		}
 	}
