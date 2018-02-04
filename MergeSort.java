@@ -17,6 +17,12 @@ abstract class MergeSort<T>
 	ArrayList<T> ascending(ArrayList<T> a)
 	{
 		if(a==null || a.isEmpty()) return new ArrayList<>();
+		if(a.size()<=2) 
+		{
+			if(a.size()==2 && compareTo(a.get(0),a.get(1))) a.add(a.remove(0));
+			return a;
+		}
+		
 		ArrayList<T> left = new ArrayList(a.subList(0,a.size()/2)), right = new ArrayList(a.subList((a.size()/2),a.size()));
 		a = new ArrayList<>();
 		
@@ -44,6 +50,12 @@ abstract class MergeSort<T>
 	ArrayList<T> descending(ArrayList<T> a)
 	{
 		if(a==null || a.isEmpty()) return new ArrayList<>();
+		else if(a.size()<=2) 
+		{
+			if(a.size()==2 && !compareTo(a.get(0),a.get(1))) a.add(a.remove(0));
+			return a;
+		}
+		
 		ArrayList<T> left = new ArrayList(a.subList(0,a.size()/2)), right = new ArrayList(a.subList((a.size()/2),a.size()));
 		a = new ArrayList<>();
 		
