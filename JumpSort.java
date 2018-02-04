@@ -17,7 +17,11 @@ abstract class JumpSort<T>
 	ArrayList <T> ascending(ArrayList<T> a)
 	{
 		if(a==null || a.isEmpty()) return new ArrayList<>();
-		if(a.size()<2) return a;
+		if(a.size()<=2) 
+		{
+			if(a.size()==2 && compareTo(a.get(0),a.get(1))) a.add(a.remove(0));
+			return a;
+		}
 
 		ArrayList<ArrayList<T>> runs = new ArrayList<>();
 		ArrayList<T> run, x, y;
