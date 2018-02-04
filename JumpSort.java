@@ -16,7 +16,7 @@ abstract class JumpSort<T>
 	 */
 	ArrayList <T> ascending(ArrayList<T> a)
 	{
-		if(a==null) return new ArrayList<>();
+		if(a==null || a.isEmpty()) return new ArrayList<>();
 		if(a.size()<2) return a;
 
 		ArrayList<ArrayList<T>> runs = new ArrayList<>();
@@ -42,26 +42,26 @@ abstract class JumpSort<T>
 						run.add(a.remove(i--));
 			}
 
-			//Run merging - EXPERIMENTAL
-			if(false && !runs.isEmpty())
+			for(int i = 0; i <= runs.size(); i++)
 			{
-				for(ArrayList <T> z : runs)
+				if(i==runs.size())
 				{
-					if(compareTo(run.get(0),z.get(z.size()-1)))
-					{
-						z.addAll(run);
-						break;
-					}
-
-					else if(compareTo(z.get(0),run.get(run.size()-1)))
-					{
-						z.addAll(0, run);
-						break;
-					}
+					runs.add(run);
+					break;
+				}
+				
+				else if(compareTo(runs.get(i).get(0),run.get(run.size()-1)))
+				{
+					runs.get(i).addAll(0,run);
+					break;
+				}
+					
+				else if(compareTo(run.get(0),runs.get(i).get(runs.get(i).size()-1)))
+				{
+					runs.get(i).addAll(run);
+					break;
 				}
 			}
-
-			runs.add(run);
 		}
 
 		if(!a.isEmpty()) runs.add(a);
