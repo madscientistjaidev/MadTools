@@ -13,9 +13,10 @@ abstract class MergeSort<T>
 	 *
 	 * @param a
 	 * @return
-	 */	
+	 */
 	ArrayList<T> ascending(ArrayList<T> a)
 	{
+		if(a==null || a.isEmpty()) return new ArrayList<>();
 		ArrayList<T> left = new ArrayList(a.subList(0,a.size()/2)), right = new ArrayList(a.subList((a.size()/2),a.size()));
 		a = new ArrayList<>();
 		
@@ -42,6 +43,7 @@ abstract class MergeSort<T>
 	 */
 	ArrayList<T> descending(ArrayList<T> a)
 	{
+		if(a==null || a.isEmpty()) return new ArrayList<>();
 		ArrayList<T> left = new ArrayList(a.subList(0,a.size()/2)), right = new ArrayList(a.subList((a.size()/2),a.size()));
 		a = new ArrayList<>();
 		
@@ -84,7 +86,7 @@ abstract class MergeSort<T>
 		};
 		
 		//Test mode chooses small input size, max value, and prints input and output.
-		boolean test = false;
+		boolean test = true;
 
 		//Create ArrayList
 		ArrayList<Integer> a = new ArrayList<>();
