@@ -9,19 +9,66 @@ import java.util.ArrayList;
  */
 abstract class TernaryStore<T>
 {
-	TernaryStore(){}
-	
-	TernaryStore(T a) {root = new TernaryNode<>(a);}
-	
 	/**
 	 * Stores values in inserted order.
 	 */
-	ArrayList<TernaryStore<T>> vals;
+	ArrayList<TernaryNode<T>> vals;
 	
 	/**
 	 * Root node of Ternary Tree.
 	 */
 	TernaryNode<T> root;
+	
+	TernaryStore(){}
+	
+	TernaryStore(T a)
+	{
+		root = new TernaryNode<>(a);
+		vals.add(root);
+	}
+	
+	TernaryStore(ArrayList<T> a)
+	{
+		TernaryNode <T> curr, root = new TernaryNode<>(a.remove(0));
+
+		outer:for(T x : a)
+		{
+			curr = root;
+
+			inner:while(true)
+			{
+				switch(compareTo(curr.val, x))
+				{
+					case -1:
+						if(curr.left==null)
+						{
+							vals.add(curr.left = new TernaryNode<>(x));
+							break inner;
+						}
+						else curr=curr.left;
+						break;
+					
+					case 0:
+						if(curr.center==null)
+						{
+							vals.add(curr.center = new TernaryNode<>(x));
+							break inner;
+						}
+						else curr=curr.left;
+						break;
+						
+					case 1:
+						if(curr.right==null)
+						{
+							vals.add(curr.right = new TernaryNode<>(x));
+							break inner;
+						}
+						else curr=curr.right;
+						break;
+				}
+			}
+		}
+	}
 	
 	/**
 	 * Used to compare two values. Returns 1 if a>b, 0 if a=b, and -1 if a<b.
