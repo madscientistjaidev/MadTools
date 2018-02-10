@@ -15,7 +15,11 @@ abstract class HeapSort <T>
 	 * @param a
 	 * @return
 	 */
-	ArrayList<T> ascending(ArrayList<T> a) {return buildHeap(a).getAscending();}
+	ArrayList<T> ascending(ArrayList<T> a)
+	{
+		if(a==null || a.isEmpty()) return new ArrayList<>();
+		return buildHeap(a).getAscending();
+	}
 	
 	/**
 	 * Accepts an ArrayList and returns one sorted in descending order.
@@ -105,7 +109,7 @@ abstract class HeapSort <T>
 		};
 
 		//Test mode chooses small input size, max value, and prints input and output.
-		boolean test = false;
+		boolean test = true;
 
 		//Create ArrayList
 		ArrayList<Integer> a = new ArrayList<>();
@@ -117,7 +121,7 @@ abstract class HeapSort <T>
 		int maxVal = test ? 100 : Integer.MAX_VALUE;
 
 		//Generate random integers.
-		for (int i = 0; i < size; i++) a.add((int)(maxVal*Math.random()));
+		//for (int i = 0; i < size; i++) a.add((int)(maxVal*Math.random()));
 
 		//Sort.
 		System.out.print(test ? a + "\n" : "");
@@ -196,4 +200,4 @@ abstract class HeapSort <T>
 			return result;
 		}
 	}
-}	
+}
