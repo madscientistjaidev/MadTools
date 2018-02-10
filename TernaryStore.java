@@ -7,15 +7,24 @@ import java.util.ArrayList;
  * @author Mad Scientist
  * @param <T>
  */
-public class TernaryStore<T>
+abstract class TernaryStore<T>
 {
 	ArrayList<T> vals;
+	
+	/**
+	 * Used to compare two values. Returns 1 if a>b, 0 if a=b, and -1 if a<b.
+	 * Should be implemented in a sub class or anonymous inner class.
+	 * @param a
+	 * @param b
+	 * @return 
+	 */
+	abstract int compareTo(T a, T b);
 	
 	/**
 	 * Used to build heap.
 	 * @param <T> 
 	 */
-	class TernaryNode<T>
+	class TernaryNode <T>
 	{
 		/**
 		 * Value of current node.
