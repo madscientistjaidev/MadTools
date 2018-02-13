@@ -19,14 +19,25 @@ abstract class TernaryStore<T>
 	 */
 	TernaryNode<T> root;
 	
+	/**
+	 * Default constructor. Initializes a blank tree.
+	 */
 	TernaryStore(){}
 	
+	/**
+	 * Initializes a tree with root node value a.
+	 * @param a 
+	 */
 	TernaryStore(T a)
 	{
 		root = new TernaryNode<>(a);
 		vals.add(root);
 	}
 	
+	/**
+	 * Initializes a tree with values in List.
+	 * @param a 
+	 */
 	TernaryStore(ArrayList<T> a)
 	{
 		TernaryNode <T> curr, root = new TernaryNode<>(a.remove(0));
