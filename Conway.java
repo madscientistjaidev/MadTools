@@ -1,5 +1,6 @@
 package MadTools;
 
+import java.util.Arrays;
 import java.util.InputMismatchException;
 
 public class Conway
@@ -84,15 +85,14 @@ public class Conway
     {
         int size = 10;
         
-        Conway c = new Conway(size);
+        int board[][] = new int[size][size];
         
-        for(int i=0; i<size; i++)
-        {
-            for(int j = 0; j<size; j++)
-            {
-                System.out.print(c.cell(i, j) ? 1 : 0);
-            }
-            System.out.println();
-        }
+        for(int[] x : board) for(int i = 0; i<size; i++)
+                x[i] = Math.round((float)Math.random());
+		
+		for(int[] x : board)
+			System.out.println(Arrays.toString(x));
+		
+		Conway c = new Conway(board);
     }
 }
