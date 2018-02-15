@@ -102,7 +102,7 @@ public class Conway
                 
             }
     
-        return null;
+        return newBoard;
     }
     
 	/**
@@ -143,6 +143,7 @@ public class Conway
     public static void main(String args[])
     {
         int size = 10;
+		int steps = 10;
         
         int board[][] = new int[size][size];
         
@@ -153,5 +154,8 @@ public class Conway
 			System.out.println(Arrays.toString(x));
 		
 		Conway c = new Conway(board);
+		
+		for(int i=0; i<steps; i++)
+			System.out.println(Arrays.deepToString(c.nextState()));
     }
 }
