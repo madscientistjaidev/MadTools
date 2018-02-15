@@ -121,7 +121,7 @@ abstract class HeapSort <T>
 		int maxVal = test ? 100 : Integer.MAX_VALUE;
 
 		//Generate random integers.
-		//for (int i = 0; i < size; i++) a.add((int)(maxVal*Math.random()));
+		for (int i = 0; i < size; i++) a.add((int)(maxVal*Math.random()));
 
 		//Sort.
 		System.out.print(test ? a + "\n" : "");
