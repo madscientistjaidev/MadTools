@@ -3,17 +3,36 @@ package MadTools;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 
+/**
+ * A simple Conway's Game of Life class.
+ * @author Mad Scientist
+ */
 public class Conway
 {
-    private final int size;
-    private boolean [][] board;
+    /**
+	 * Size of board.
+	 */
+	private final int size;
     
+	/**
+	 * Stores board.
+	 */
+	private boolean [][] board;
+    
+	/**
+	 * Initializes blank board with specified size.
+	 * @param size 
+	 */
     Conway(int size)
     {
         this.size = size;
         this.board = new boolean[size][size];
     }
     
+	/**
+	 * Initializes board from array.
+	 * @param board 
+	 */
     Conway(boolean [][] board)
     {
         if(board.length != board[0].length) throw new InputMismatchException();
@@ -22,6 +41,10 @@ public class Conway
         this.board = board;
     }
     
+	/**
+	 * Initializes board from array.
+	 * @param board 
+	 */
     Conway(int [][] board)
     {
         if(board.length != board[0].length) throw new InputMismatchException();
@@ -36,10 +59,22 @@ public class Conway
             }
     }
     
+	/**
+	 * Returns size of board.
+	 * @return 
+	 */
     int getSize() {return size;}
     
+	/**
+	 * Returns board as boolean array.
+	 * @return 
+	 */
     boolean [][] getBoard() {return board;}
     
+	/**
+	 * Returns board as integer array.
+	 * @return 
+	 */
     int [][] asInt()
     {
         int [][] intBoard = new int [size][size];
@@ -53,6 +88,10 @@ public class Conway
         return intBoard;
     }
     
+	/**
+	 * Advances simulation by one step.
+	 * @return 
+	 */
     boolean [][] nextState()
     {
         boolean [][] newBoard = board;
@@ -66,6 +105,11 @@ public class Conway
         return null;
     }
     
+	/**
+	 * Compares current board to specified one.
+	 * @param otherState
+	 * @return 
+	 */
     boolean isEqual(boolean otherState[][])
     {
         if(otherState.length!=size) return false;
@@ -77,10 +121,25 @@ public class Conway
         return true;
     }
     
+	/**
+	 * Compares current board to specified one.
+	 * @param otherState
+	 * @return 
+	 */
     boolean isEqual(Conway otherState) {return otherState.getSize()==size;}
     
+	/**
+	 * Gets value of specified cell.
+	 * @param i
+	 * @param j
+	 * @return 
+	 */
     boolean cell(int i, int j) {return board[i][j];}
     
+	/**
+	 * Example.
+	 * @param args 
+	 */
     public static void main(String args[])
     {
         int size = 10;
