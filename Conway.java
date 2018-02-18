@@ -9,153 +9,149 @@ import java.util.InputMismatchException;
  */
 public class Conway
 {
-    /**
+	/**
 	 * Size of board.
 	 */
 	private final int size;
-    
+
 	/**
 	 * Stores board.
 	 */
 	private boolean [][] board;
-    
+
 	/**
 	 * Initializes blank board with specified size.
-	 * @param size 
+	 * @param size
 	 */
-    Conway(int size)
-    {
-        this.size = size;
-        this.board = new boolean[size][size];
-    }
-    
+	Conway(int size)
+	{
+		this.size = size;
+		this.board = new boolean[size][size];
+	}
+
 	/**
 	 * Initializes board from array.
-	 * @param board 
+	 * @param board
 	 */
-    Conway(boolean [][] board)
-    {
-        if(board.length != board[0].length) throw new InputMismatchException();
-        
-        size = board.length;
-        this.board = board;
-    }
-    
+	Conway(boolean [][] board)
+	{
+		if(board.length != board[0].length) throw new InputMismatchException();
+
+		size = board.length;
+		this.board = board;
+	}
+
 	/**
 	 * Initializes board from array.
-	 * @param board 
+	 * @param board
 	 */
-    Conway(int [][] board)
-    {
-        if(board.length != board[0].length) throw new InputMismatchException();
-        
-        size = board.length;
-        this.board = new boolean[size][size];
-        
-        for(int i=0; i<size; i++)
-            for(int j = 0; j<size; j++)
-            {
-                this.board[i][j] = board[i][j]>0;
-            }
-    }
-    
+	Conway(int [][] board)
+	{
+		if(board.length != board[0].length) throw new InputMismatchException();
+
+		size = board.length;
+		this.board = new boolean[size][size];
+
+		for(int i=0; i<size; i++)
+			for(int j = 0; j<size; j++)
+				this.board[i][j] = board[i][j]>0;
+	}
+
 	/**
 	 * Returns size of board.
-	 * @return 
+	 * @return
 	 */
-    int getSize() {return size;}
-    
+	int getSize() {return size;}
+
 	/**
 	 * Returns board as boolean array.
-	 * @return 
+	 * @return
 	 */
-    boolean [][] getBoard() {return board;}
-    
+	boolean [][] getBoard() {return board;}
+
 	/**
 	 * Returns board as integer array.
-	 * @return 
+	 * @return
 	 */
-    int [][] asInt()
-    {
-        int [][] intBoard = new int [size][size];
-        
-        for(int i=0; i<size; i++)
-            for(int j = 0; j<size; j++)
-            {
-                intBoard[i][j] = board[i][j] ? 1 : 0;
-            }
-        
-        return intBoard;
-    }
-    
+	int [][] asInt()
+	{
+		int [][] intBoard = new int [size][size];
+
+		for(int i=0; i<size; i++)
+			for(int j = 0; j<size; j++)
+				intBoard[i][j] = board[i][j] ? 1 : 0;
+
+		return intBoard;
+	}
+
 	/**
 	 * Advances simulation by one step.
-	 * @return 
+	 * @return
 	 */
-    boolean [][] nextState()
-    {
-        boolean [][] newBoard = board;
-        
-        for(int i=0; i<size; i++)
-            for(int j = 0; j<size; j++)
-            {
-                
-            }
-    
-        return newBoard;
-    }
-    
-	/**
-	 * Compares current board to specified one.
-	 * @param otherState
-	 * @return 
-	 */
-    boolean isEqual(boolean otherState[][])
-    {
-        if(otherState.length!=size) return false;
+	boolean [][] nextState()
+	{
+		boolean [][] newBoard = board;
 
-        for(int i = 0; i < size; i++)
-            for(int j = 0; j < size; j++)
-                if(board[i][j] != otherState[i][j]) return false;
-        
-        return true;
-    }
-    
+		for(int i=0; i<size; i++)
+			for(int j = 0; j<size; j++)
+			{
+
+			}
+
+		return newBoard;
+	}
+
 	/**
 	 * Compares current board to specified one.
 	 * @param otherState
-	 * @return 
+	 * @return
 	 */
-    boolean isEqual(Conway otherState) {return otherState.getSize()==size;}
-    
+	boolean isEqual(boolean otherState[][])
+	{
+		if(otherState.length!=size) return false;
+
+		for(int i = 0; i < size; i++)
+			for(int j = 0; j < size; j++)
+				if(board[i][j] != otherState[i][j]) return false;
+
+		return true;
+	}
+
+	/**
+	 * Compares current board to specified one.
+	 * @param otherState
+	 * @return
+	 */
+	boolean isEqual(Conway otherState) {return otherState.getSize()==size;}
+
 	/**
 	 * Gets value of specified cell.
 	 * @param i
 	 * @param j
-	 * @return 
+	 * @return
 	 */
-    boolean cell(int i, int j) {return board[i][j];}
-    
+	boolean cell(int i, int j) {return board[i][j];}
+
 	/**
 	 * Example.
-	 * @param args 
+	 * @param args
 	 */
-    public static void main(String args[])
-    {
-        int size = 10;
+	public static void main(String args[])
+	{
+		int size = 10;
 		int steps = 10;
-        
-        int board[][] = new int[size][size];
-        
-        for(int[] x : board) for(int i = 0; i<size; i++)
-                x[i] = Math.round((float)Math.random());
-		
+
+		int board[][] = new int[size][size];
+
+		for(int[] x : board) for(int i = 0; i<size; i++)
+			x[i] = Math.round((float)Math.random());
+
 		for(int[] x : board)
 			System.out.println(Arrays.toString(x));
-		
+
 		Conway c = new Conway(board);
-		
+
 		for(int i=0; i<steps; i++)
 			System.out.println(Arrays.deepToString(c.nextState()));
-    }
+	}
 }
