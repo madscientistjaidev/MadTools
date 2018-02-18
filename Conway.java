@@ -104,6 +104,18 @@ public class Conway
 				if(i!=0 && j!=board[0].length-1) if(board[i-1][j+1]) count++;
 				if(i!=board.length-1 && j!=0) if(board[i+1][j-1]) count++;
 				if(i!=board.length-1 && j!=board[0].length-1) if(board[i+1][j+1]) count++;
+				
+				if(board[i][j])
+				{
+					if(count<2) newBoard[i][j] = false;
+					else if(count>3) newBoard[i][j] = false;
+					else newBoard[i][j] = true;
+				}
+				
+				else
+				{
+					if(count>3) newBoard[i][j] = true;
+				}
 			}
 
 		return newBoard;
