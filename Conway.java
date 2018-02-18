@@ -122,7 +122,7 @@ public class Conway
 	 * @param otherState
 	 * @return
 	 */
-	boolean isEqual(Conway otherState) {return otherState.getSize()==size;}
+	boolean isEqual(Conway otherState) {return isEqual(otherState.getBoard());}
 
 	/**
 	 * Gets value of specified cell.
