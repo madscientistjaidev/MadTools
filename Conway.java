@@ -73,7 +73,7 @@ public class Conway
 	 * Returns board as integer array.
 	 * @return
 	 */
-	int [][] asInt()
+	int [][] asIntArray()
 	{
 		int [][] intBoard = new int [size][size];
 
@@ -83,12 +83,12 @@ public class Conway
 
 		return intBoard;
 	}
-
+	
 	/**
-	 * Advances simulation by one step.
-	 * @return
+	 * Returns next step.
+	 * @return 
 	 */
-	boolean [][] nextState()
+	boolean [][] getNextState()
 	{
 		boolean [][] newBoard = new boolean[size][size];
 		int count = 0;
@@ -105,11 +105,19 @@ public class Conway
 				if(i!=board.length-1 && j!=0) if(board[i+1][j-1]) count++;
 				if(i!=board.length-1 && j!=board[0].length-1) if(board[i+1][j+1]) count++;
 				
+				switch(count)
+				{
+					case(0):
+					case(1): newBoard[i][j] = false; break;
+					case(2): newBoard[i][j] = true; break;
+					case(3): newBoard[i][j] = true; break;
+					default: newBoard[i][j] = false; break;
+				}
+				
 				if(board[i][j])
 				{
 					if(count<2) newBoard[i][j] = false;
-					else if(count>3) newBoard[i][j] = false;
-					else newBoard[i][j] = true;
+					else newBoard[i][j] = count <= 3;
 				}
 				
 				else
@@ -172,6 +180,6 @@ public class Conway
 		Conway c = new Conway(board);
 
 		for(int i=0; i<steps; i++)
-			System.out.println(Arrays.deepToString(c.nextState()));
+			System.out.println(Arrays.deepToString(new Conway(c.getNextState()).asIntArray()));
 	}
 }
