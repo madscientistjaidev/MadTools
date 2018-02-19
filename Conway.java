@@ -83,6 +83,18 @@ public class Conway
 
 		return intBoard;
 	}
+
+	/**
+	 * Advances simulation by one step.
+	 * @return
+	 */
+	void advance() {board = getNextState();}
+	
+	/**
+	 * Advances simulation by n steps.
+	 * @return
+	 */
+	void advance(int n) {for(int i=0; i<n; i++) board = getNextState();}
 	
 	/**
 	 * Returns next step.
