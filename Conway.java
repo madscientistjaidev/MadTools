@@ -171,6 +171,28 @@ public class Conway
 	 * @return
 	 */
 	boolean cell(int i, int j) {return board[i][j];}
+	
+	/**
+	 * Returns number of live cells in board.
+	 * @return 
+	 */
+	int liveCount()
+	{
+		int count = 0;
+		for(boolean[] row : board) for(boolean cell : row) if(cell) count++;
+		return count;
+	}
+	
+	/**
+	 * Returns number of dead cells in board.
+	 * @return 
+	 */
+	int deadCount()
+	{
+		int count = 0;
+		for(boolean[] row : board) for(boolean cell : row) if(!cell) count++;
+		return count;
+	}
 
 	/**
 	 * Example.
