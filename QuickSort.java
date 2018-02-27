@@ -9,12 +9,12 @@ import java.util.ArrayList;
 abstract class QuickSort <T>
 {
 	/**
-	 * Accepts an ArrayList and returns one sorted in ascending order.
+	 * Accepts an ArrayList and returns it in sorted order.
 	 *
 	 * @param a
 	 * @return
 	 */
-	ArrayList <T> ascending(ArrayList <T> a)
+	ArrayList <T> sort(ArrayList <T> a)
 	{
 		if(a==null || a.isEmpty()) return new ArrayList<>();
 		if(a.size()<=2) 
@@ -30,38 +30,9 @@ abstract class QuickSort <T>
 			if(!compareTo(x, pivot)) left.add(x);
 			else right.add(x);
 		
-		if(left.size()>1) left=ascending(left);
+		if(left.size()>1) left=sort(left);
 		left.add(pivot);
-		left.addAll((right.size()>1) ? ascending(right) : right);
-		
-		return left;
-	}
-
-	/**
-	 * Accepts an ArrayList and returns one sorted in descending order.
-	 *
-	 * @param a
-	 * @return
-	 */
-	ArrayList <T> descending(ArrayList <T> a)
-	{        
-		if(a==null || a.isEmpty()) return new ArrayList<>();
-		else if(a.size()<=2) 
-		{
-			if(a.size()==2 && !compareTo(a.get(0),a.get(1))) a.add(a.remove(0));
-			return a;
-		}
-		
-		final T pivot = a.remove(getMedian(a.get(0),a.get(a.size()/2),a.get(a.size()-1),a.size()));
-		ArrayList <T> left = new ArrayList<>(), right = new ArrayList<>();
-	
-		for (T x : a)
-			if(!compareTo(x, pivot)) right.add(x);
-			else left.add(x);
-		
-		if(left.size()>1) left=descending(left);
-		left.add(pivot);
-		left.addAll((right.size()>1) ? descending(right) : right);
+		left.addAll((right.size()>1) ? sort(right) : right);
 		
 		return left;
 	}
@@ -121,7 +92,7 @@ abstract class QuickSort <T>
 
 		//Sort.
 		System.out.print(test ? a + "\n" : "");
-		a = q.ascending(a);
+		a = q.sort(a);
 		System.out.print(test ? a + "\n" : "");
 
 		//Check if result is sorted.
