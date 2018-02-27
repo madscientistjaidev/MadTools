@@ -10,24 +10,16 @@ import java.util.ArrayList;
 abstract class HeapSort <T>
 {
 	/**
-	 * Accepts an ArrayList and returns one sorted in ascending order.
+	 * Accepts an ArrayList and returns it in sorted order.
 	 *
 	 * @param a
 	 * @return
 	 */
-	ArrayList<T> ascending(ArrayList<T> a)
+	ArrayList<T> sort(ArrayList<T> a)
 	{
 		if(a==null || a.isEmpty()) return new ArrayList<>();
 		return buildHeap(a).getAscending();
 	}
-	
-	/**
-	 * Accepts an ArrayList and returns one sorted in descending order.
-	 *
-	 * @param a
-	 * @return
-	 */
-	ArrayList<T> descending(ArrayList<T> a) {return buildHeap(a).getDescending();}
 	
 	/**
 	 * Builds heap from ArrayList and returns root node.
@@ -125,7 +117,7 @@ abstract class HeapSort <T>
 
 		//Sort.
 		System.out.print(test ? a + "\n" : "");
-		a = h.ascending(a);
+		a = h.sort(a);
 		System.out.print(test ? a + "\n" : "");
 
 		//Check if result is sorted.
