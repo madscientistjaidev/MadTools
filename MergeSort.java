@@ -9,12 +9,12 @@ import java.util.ArrayList;
 abstract class MergeSort<T>
 {
 	/**
-	 * Accepts an ArrayList and returns one sorted in ascending order.
+	 * Accepts an ArrayList and returns it in sorted order.
 	 *
 	 * @param a
 	 * @return
 	 */
-	ArrayList<T> ascending(ArrayList<T> a)
+	ArrayList<T> sort(ArrayList<T> a)
 	{
 		if(a==null || a.isEmpty()) return new ArrayList<>();
 		if(a.size()<=2) 
@@ -26,46 +26,13 @@ abstract class MergeSort<T>
 		ArrayList<T> left = new ArrayList(a.subList(0,a.size()/2)), right = new ArrayList(a.subList((a.size()/2),a.size()));
 		a = new ArrayList<>();
 		
-		if(left.size()>1) left=ascending(left);
-		if(right.size()>1) right=ascending(right);
+		if(left.size()>1) left=sort(left);
+		if(right.size()>1) right=sort(right);
 		
 		int leftPtr=0, rightPtr=0, leftSize = left.size(), rightSize = right.size();
 		
 		while(leftPtr<leftSize && rightPtr<rightSize)
 			if(!compareTo(left.get(leftPtr),right.get(rightPtr))) a.add(left.get(leftPtr++));
-			else a.add(right.get(rightPtr++));
-
-		if(leftPtr<leftSize) while(leftPtr<leftSize) a.add(left.get(leftPtr++));
-		if(rightPtr<rightSize) while(rightPtr<rightSize) a.add(right.get(rightPtr++));
-		
-		return a;
-	}
-
-	/**
-	 * Accepts an ArrayList and returns one sorted in descending order.
-	 *
-	 * @param a
-	 * @return
-	 */
-	ArrayList<T> descending(ArrayList<T> a)
-	{
-		if(a==null || a.isEmpty()) return new ArrayList<>();
-		else if(a.size()<=2) 
-		{
-			if(a.size()==2 && !compareTo(a.get(0),a.get(1))) a.add(a.remove(0));
-			return a;
-		}
-		
-		ArrayList<T> left = new ArrayList(a.subList(0,a.size()/2)), right = new ArrayList(a.subList((a.size()/2),a.size()));
-		a = new ArrayList<>();
-		
-		if(left.size()>1) left=ascending(left);
-		if(right.size()>1) right=ascending(right);
-		
-		int leftPtr=0, rightPtr=0, leftSize = left.size(), rightSize = right.size();
-		
-		while(leftPtr<leftSize && rightPtr<rightSize)
-			if(compareTo(left.get(leftPtr),right.get(rightPtr))) a.add(left.get(leftPtr++));
 			else a.add(right.get(rightPtr++));
 
 		if(leftPtr<leftSize) while(leftPtr<leftSize) a.add(left.get(leftPtr++));
@@ -114,7 +81,7 @@ abstract class MergeSort<T>
 		
 		//Sort.
 		System.out.print(test ? a + "\n" : "");
-		a = m.ascending(a);
+		a = m.sort(a);
 		System.out.print(test ? a + "\n" : "");
 		
 		//Check if result is sorted.
