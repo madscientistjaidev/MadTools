@@ -18,7 +18,7 @@ abstract class HeapSort <T>
 	ArrayList<T> sort(ArrayList<T> a)
 	{
 		if(a==null || a.isEmpty()) return new ArrayList<>();
-		return buildHeap(a).getAscending();
+		return buildHeap(a).getSorted();
 	}
 	
 	/**
@@ -159,36 +159,19 @@ abstract class HeapSort <T>
 		}
 
 		/**
-		 * Gets sub-heap elements in ascending order.
+		 * Gets sub-heap elements in sorted order.
 		 * @return 
 		 */
-		ArrayList<T> getAscending()
+		ArrayList<T> getSorted()
 		{
 			ArrayList<T> result = new ArrayList<>();
-			if(left!=null) result.addAll(left.getAscending());
+			if(left!=null) result.addAll(left.getSorted());
 			result.add(val);
-			if(right!=null) result.addAll(right.getAscending());
+			if(right!=null) result.addAll(right.getSorted());
 			
 			left=null;
 			right = null;
 			
-			return result;
-		}
-
-		/**
-		 * Gets sub-heap elements in descending order.
-		 * @return 
-		 */
-		ArrayList<T> getDescending()
-		{
-			ArrayList<T> result = new ArrayList<>();
-			if(right!=null) result.addAll(right.getDescending());
-			result.add(val);
-			if(left!=null) result.addAll(left.getDescending());
-			
-			left=null;
-			right = null;
-
 			return result;
 		}
 	}
