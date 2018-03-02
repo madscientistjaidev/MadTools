@@ -117,13 +117,8 @@ public class Conway
 				if(i!=board.length-1 && j!=0) if(board[i+1][j-1]) count++;
 				if(i!=board.length-1 && j!=board[0].length-1) if(board[i+1][j+1]) count++;
 				
-				if(board[i][j])
-				{
-					if(count<2) newBoard[i][j] = false;
-					else newBoard[i][j] = count <= 3;
-				}
-				
-				else if(count>3) newBoard[i][j] = true;
+				if(board[i][j] && (count<2 || count>3)) newBoard[i][j] = false;
+				if(!board[i][j] && count==3) newBoard[i][j] = true;
 			}
 
 		return newBoard;
@@ -199,7 +194,7 @@ public class Conway
 	public static void main(String args[])
 	{
 		int size = 10;
-		int steps = 10000000;
+		int steps = 1;
 
 		int board[][] = new int[size][size];
 
