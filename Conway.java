@@ -195,12 +195,13 @@ public class Conway
 	{
 		int size = 10;
 		int steps = 1;
+		float weight = -0.1f;
 
 		int board[][] = new int[size][size];
 
 		for(int[] x : board) for(int i = 0; i<size; i++)
-			x[i] = Math.round((float)Math.random());
-
+			x[i] = Math.round(weight+(float)Math.random());
+		
 		Conway c = new Conway(board);
 		
 		System.out.println(c);
