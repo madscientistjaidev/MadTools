@@ -123,10 +123,7 @@ public class Conway
 					else newBoard[i][j] = count <= 3;
 				}
 				
-				else
-				{
-					if(count>3) newBoard[i][j] = true;
-				}
+				else if(count>3) newBoard[i][j] = true;
 			}
 
 		return newBoard;
@@ -184,6 +181,16 @@ public class Conway
 		for(boolean[] row : board) for(boolean cell : row) if(!cell) count++;
 		return count;
 	}
+	
+	@Override
+	public String toString()
+	{
+		String s = "";
+		int b[][] = asIntArray();
+		
+		for(int [] row : b) s += Arrays.toString(row) + "\n";
+		return s;
+	}
 
 	/**
 	 * Example.
@@ -192,19 +199,17 @@ public class Conway
 	public static void main(String args[])
 	{
 		int size = 10;
-		int steps = 10;
+		int steps = 10000000;
 
 		int board[][] = new int[size][size];
 
 		for(int[] x : board) for(int i = 0; i<size; i++)
 			x[i] = Math.round((float)Math.random());
 
-		for(int[] x : board)
-			System.out.println(Arrays.toString(x));
-
 		Conway c = new Conway(board);
-
-		for(int i=0; i<steps; i++)
-			System.out.println(Arrays.deepToString(new Conway(c.getNextState()).asIntArray()));
+		
+		System.out.println(c);
+		c.advance(steps);
+		System.out.println(c);
 	}
 }
