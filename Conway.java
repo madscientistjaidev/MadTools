@@ -107,34 +107,42 @@ public class Conway
 	
 	/**
 	 * Returns next step.
-	 * @return 
+	 * @return
 	 */
 	boolean [][] getNextState()
 	{
 		boolean [][] newBoard = new boolean[size][size];
-		int count;
 
 		for(int i=0; i<size; i++)
 			for(int j = 0; j<size; j++)
-			{
-				count = 0;
-
-				if(i!=0) if(board[i-1][j]) count++;
-				if(i!=board.length-1) if(board[i+1][j]) count++;
-				if(j!=0) if(board[i][j-1]) count++;
-				if(j!=board[0].length-1) if(board[i][j+1]) count++;
-				if(i!=0 && j!=0) if(board[i-1][j-1]) count++;
-				if(i!=0 && j!=board[0].length-1) if(board[i-1][j+1]) count++;
-				if(i!=board.length-1 && j!=0) if(board[i+1][j-1]) count++;
-				if(i!=board.length-1 && j!=board[0].length-1) if(board[i+1][j+1]) count++;
-
-				if(!board[i][j] && count==3) newBoard[i][j] = true;
-				else newBoard[i][j] = board[i][j] && (count==3 || count==2);
-			}
+				newBoard[i][j] = getNextCell(i,j);
 
 		return newBoard;
 	}
+	
+	/**
+	 * Return next cell.
+	 * @param i
+	 * @param j
+	 * @return 
+	 */
+	boolean getNextCell(int i, int j)
+	{
+		int count = 0;
 
+		if(i!=0) if(board[i-1][j]) count++;
+		if(i!=board.length-1) if(board[i+1][j]) count++;
+		if(j!=0) if(board[i][j-1]) count++;
+		if(j!=board[0].length-1) if(board[i][j+1]) count++;
+		if(i!=0 && j!=0) if(board[i-1][j-1]) count++;
+		if(i!=0 && j!=board[0].length-1) if(board[i-1][j+1]) count++;
+		if(i!=board.length-1 && j!=0) if(board[i+1][j-1]) count++;
+		if(i!=board.length-1 && j!=board[0].length-1) if(board[i+1][j+1]) count++;
+
+		if(!board[i][j] && count==3) return true;
+		else return board[i][j] && (count==3 || count==2);
+	}
+	
 	/**
 	 * Compares current board to specified one.
 	 * @param otherState
