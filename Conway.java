@@ -128,16 +128,16 @@ public class Conway
 	 */
 	boolean getNextCell(int i, int j)
 	{
-		int count = 0;
-
+		int count = 0, lim=size-1;
+		
 		if(i!=0) if(board[i-1][j]) count++;
-		if(i!=board.length-1) if(board[i+1][j]) count++;
+		if(i!=lim) if(board[i+1][j]) count++;
 		if(j!=0) if(board[i][j-1]) count++;
-		if(j!=board[0].length-1) if(board[i][j+1]) count++;
+		if(j!=lim) if(board[i][j+1]) count++;
 		if(i!=0 && j!=0) if(board[i-1][j-1]) count++;
-		if(i!=0 && j!=board[0].length-1) if(board[i-1][j+1]) count++;
-		if(i!=board.length-1 && j!=0) if(board[i+1][j-1]) count++;
-		if(i!=board.length-1 && j!=board[0].length-1) if(board[i+1][j+1]) count++;
+		if(i!=0 && j!=lim) if(board[i-1][j+1]) count++;
+		if(i!=lim && j!=0) if(board[i+1][j-1]) count++;
+		if(i!=lim && j!=lim) if(board[i+1][j+1]) count++;
 
 		if(!board[i][j] && count==3) return true;
 		else return board[i][j] && (count==3 || count==2);
