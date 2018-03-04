@@ -12,71 +12,72 @@ public class Conway
 	/**
 	 * Size of board.
 	 */
-	private final int size;
+	private final int s;
 
 	/**
 	 * Stores board.
 	 */
-	private boolean [][] board;
+	private boolean [][] b;
 
 	/**
 	 * Initializes blank board.
 	 */
 	Conway()
 	{
-		this.size = 0;
-		this.board = null;
+		this.s = 0;
+		this.b = null;
 	}
-	
+
 	/**
 	 * Initializes blank board with specified size.
-	 * @param size
+	 * @param s
 	 */
-	Conway(int size)
+	Conway(int s)
 	{
-		this.size = size;
-		this.board = new boolean[size][size];
+		if(s<1) throw new InputMismatchException();
+		this.s = s;
+		this.b = new boolean[s][s];
 	}
 
 	/**
 	 * Initializes board from array.
-	 * @param board
+	 * @param b
 	 */
-	Conway(boolean [][] board)
+	Conway(boolean [][] b)
 	{
-		if(board.length != board[0].length) throw new InputMismatchException();
+		if(b.length != b[0].length) throw new InputMismatchException();
 
-		size = board.length;
-		this.board = board;
+		s = b.length;
+		this.b = b;
 	}
 
 	/**
 	 * Initializes board from array.
-	 * @param board
+	 * @param b
 	 */
-	Conway(int [][] board)
+	Conway(int [][] b)
 	{
-		if(board.length != board[0].length) throw new InputMismatchException();
+		if(b.length != b[0].length) throw new InputMismatchException();
 
-		size = board.length;
-		this.board = new boolean[size][size];
+		s = b.length;
+		this.b = new boolean[s][s];
 
-		for(int i=0; i<size; i++)
-			for(int j = 0; j<size; j++)
-				this.board[i][j] = board[i][j]>0;
+		for(int i=0; i<s; i++)
+			for(int j = 0; j<s; j++)
+				this.b[i][j] = b[i][j]>0;
 	}
 
 	/**
 	 * Returns size of board.
 	 * @return
 	 */
-	int getSize() {return size;}
+	int getSize() {return s;}
 
 	/**
 	 * Returns board as boolean array.
 	 * @return
 	 */
-	boolean [][] getBoard() {return board;}
+	boolean [][] getBoard() {return b;}
 
 	/**
 	 * Returns board as integer array.
@@ -84,40 +85,40 @@ public class Conway
 	 */
 	int [][] asIntArray()
 	{
-		int [][] intBoard = new int [size][size];
+		int [][] intB = new int [s][s];
 
-		for(int i=0; i<size; i++)
-			for(int j = 0; j<size; j++)
-				intBoard[i][j] = board[i][j] ? 1 : 0;
+		for(int i=0; i<s; i++)
+			for(int j = 0; j<s; j++)
+				intB[i][j] = b[i][j] ? 1 : 0;
 
-		return intBoard;
+		return intB;
 	}
 
 	/**
 	 * Advances simulation by one step.
 	 * @return
 	 */
-	void advance() {board = getNextState();}
-	
+	void advance() {b = getNextState();}
+
 	/**
 	 * Advances simulation by n steps.
 	 * @return
 	 */
-	void advance(int n) {for(int i=0; i<n; i++) board = getNextState();}
-	
+	void advance(int n) {for(int i=0; i<n; i++) b = getNextState();}
+
 	/**
 	 * Returns next step.
 	 * @return
 	 */
 	boolean [][] getNextState()
 	{
-		boolean [][] newBoard = new boolean[size][size];
+		boolean [][] newB = new boolean[s][s];
 
-		for(int i=0; i<size; i++)
-			for(int j = 0; j<size; j++)
-				newBoard[i][j] = getNextCell(i,j);
+		for(int i=0; i<s; i++)
+			for(int j = 0; j<s; j++)
+				newB[i][j] = getNextCell(i,j);
 
-		return newBoard;
+		return newB;
 	}
 	
 	/**
@@ -128,21 +129,21 @@ public class Conway
 	 */
 	boolean getNextCell(int i, int j)
 	{
-		int count = 0, lim=size-1;
+		int c = 0, l=s-1;
 		
-		if(i!=0) if(board[i-1][j]) count++;
-		if(i!=lim) if(board[i+1][j]) count++;
-		if(j!=0) if(board[i][j-1]) count++;
-		if(j!=lim) if(board[i][j+1]) count++;
-		if(i!=0 && j!=0) if(board[i-1][j-1]) count++;
-		if(i!=0 && j!=lim) if(board[i-1][j+1]) count++;
-		if(i!=lim && j!=0) if(board[i+1][j-1]) count++;
-		if(i!=lim && j!=lim) if(board[i+1][j+1]) count++;
+		if(i!=0) if(b[i-1][j]) c++;
+		if(i!=l) if(b[i+1][j]) c++;
+		if(j!=0) if(b[i][j-1]) c++;
+		if(j!=l) if(b[i][j+1]) c++;
+		if(i!=0 && j!=0) if(b[i-1][j-1]) c++;
+		if(i!=0 && j!=l) if(b[i-1][j+1]) c++;
+		if(i!=l && j!=0) if(b[i+1][j-1]) c++;
+		if(i!=l && j!=l) if(b[i+1][j+1]) c++;
 
-		if(!board[i][j] && count==3) return true;
-		else return board[i][j] && (count==3 || count==2);
+		if(!b[i][j] && c==3) return true;
+		else return b[i][j] && (c==3 || c==2);
 	}
-	
+
 	/**
 	 * Compares current board to specified one.
 	 * @param otherState
@@ -150,11 +151,11 @@ public class Conway
 	 */
 	boolean isEqual(boolean otherState[][])
 	{
-		if(otherState.length!=size) return false;
+		if(otherState.length!=s) return false;
 
-		for(int i = 0; i < size; i++)
-			for(int j = 0; j < size; j++)
-				if(board[i][j] != otherState[i][j]) return false;
+		for(int i = 0; i < s; i++)
+			for(int j = 0; j < s; j++)
+				if(b[i][j] != otherState[i][j]) return false;
 
 		return true;
 	}
@@ -172,38 +173,38 @@ public class Conway
 	 * @param j
 	 * @return
 	 */
-	boolean cell(int i, int j) {return board[i][j];}
-	
+	boolean cell(int i, int j) {return b[i][j];}
+
 	/**
 	 * Returns number of live cells in board.
-	 * @return 
+	 * @return
 	 */
 	int liveCount()
 	{
-		int count = 0;
-		for(boolean[] row : board) for(boolean cell : row) if(cell) count++;
-		return count;
+		int c = 0;
+		for(boolean[] row : b) for(boolean cell : row) if(cell) c++;
+		return c;
 	}
-	
+
 	/**
 	 * Returns number of dead cells in board.
-	 * @return 
+	 * @return
 	 */
 	int deadCount()
 	{
 		int count = 0;
-		for(boolean[] row : board) for(boolean cell : row) if(!cell) count++;
+		for(boolean[] row : b) for(boolean cell : row) if(!cell) count++;
 		return count;
 	}
-	
+
 	@Override
 	public String toString()
 	{
-		String s = "";
-		int b[][] = asIntArray();
-		
-		for(int [] row : b) s += Arrays.toString(row) + "\n";
-		return s;
+		String str = "";
+		int brd[][] = asIntArray();
+
+		for(int [] row : brd) str += Arrays.toString(row) + "\n";
+		return str;
 	}
 
 	/**
