@@ -214,18 +214,19 @@ public class Conway
 	public static void main(String args[])
 	{
 		int size = 10;
-		int steps = 1;
-		float weight = -0.1f;
+		int steps = 1000;
+		float weight = 0f;
 
-		int board[][] = new int[size][size];
-
-		for(int[] x : board) for(int i = 0; i<size; i++)
+		//Random board.
+		int b1[][] = new int[size][size];
+		for(int[] x : b1) for(int i = 0; i<size; i++)
 			x[i] = Math.round(weight+(float)Math.random());
-		
-		Conway c = new Conway(board);
-		
-		System.out.println(c);
-		c.advance(steps);
-		System.out.println(c);
+
+		System.out.println("\n---------Random Board---------");
+		Conway c1 = new Conway(b1);
+		System.out.println(c1);
+		c1.advance(steps);
+		System.out.println(c1);
+		System.out.println("------------------------------");
 	}
 }
