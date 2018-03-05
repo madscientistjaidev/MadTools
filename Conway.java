@@ -228,5 +228,26 @@ public class Conway
 		c1.advance(steps);
 		System.out.println(c1);
 		System.out.println("------------------------------");
+		
+		//Still lifes.
+		int b2[][] = {
+			{0,0,0,0,0,0,0,0,0,0},
+			{0,1,1,0,0,0,0,0,0,0},
+			{0,1,1,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,1,1,0,0},
+			{0,0,0,0,0,1,0,0,1,0},
+			{0,0,0,0,0,0,1,1,0,0},
+			{0,0,0,0,0,0,0,0,0,0},
+		};
+		
+		System.out.println("\n---------Still Lifes----------");
+		Conway c2 = new Conway(b2);
+		System.out.println(c2);
+		c2.advance(steps);
+		System.out.println(c2);
+		System.out.println("------------------------------");
 	}
 }
