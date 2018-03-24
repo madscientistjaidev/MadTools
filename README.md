@@ -6,3 +6,5 @@ The code should work in Java 10 and greater, and is provided without any guarant
 The code is provided free of any license and/or other restrictions.
 
 Any feedback and bug reports are appreciated.
+
+The sorting algorithms take a compareTo function in an anonymous inner class.
