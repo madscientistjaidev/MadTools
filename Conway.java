@@ -66,6 +66,16 @@ public class Conway
 			for(int j = 0; j<s; j++)
 				this.b[i][j] = b[i][j]>0;
 	}
+	
+	/**
+	 * Initializes board from Conway object.
+	 * @param b
+	 */
+	Conway(Conway c)
+	{
+		this.b = c.b;
+		s = b.length;
+	}
 
 	/**
 	 * Returns size of board.
