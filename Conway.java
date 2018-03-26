@@ -174,6 +174,14 @@ public class Conway
 	 * @return
 	 */
 	boolean cell(int i, int j) {return b[i][j];}
+	
+	/**
+	 * Gets value of specified cell.
+	 * @param i
+	 * @param j
+	 * @return
+	 */
+	int cellInt(int i, int j) {return b[i][j] ? 1 : 0;}
 
 	/**
 	 * Returns number of live cells in board.
