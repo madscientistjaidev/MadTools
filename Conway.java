@@ -159,6 +159,22 @@ public class Conway
 
 		return true;
 	}
+	
+	/**
+	 * Compares current board to specified one.
+	 * @param otherState
+	 * @return
+	 */
+	boolean isEqual(int otherState[][])
+	{
+		if(otherState.length!=s) return false;
+
+		for(int i = 0; i < s; i++)
+			for(int j = 0; j < s; j++)
+				if(b[i][j] != otherState[i][j]>0) return false;
+
+		return true;
+	}
 
 	/**
 	 * Compares current board to specified one.
