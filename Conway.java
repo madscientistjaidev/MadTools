@@ -204,6 +204,12 @@ public class Conway
 		for(boolean[] row : b) for(boolean cell : row) if(!cell) count++;
 		return count;
 	}
+	
+	/**
+	 * Returns true if board has live cells.
+	 * @return 
+	 */
+	boolean isActive() {return liveCount()>0;}
 
 	@Override
 	public String toString()
