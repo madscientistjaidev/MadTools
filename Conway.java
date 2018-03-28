@@ -223,6 +223,14 @@ public class Conway
 	}
 	
 	/**
+	 * Sets specified cell to specified value.
+	 * @param i
+	 * @param j
+	 * @param v 
+	 */
+	void set(int i, int j, boolean v) {b[i][j]=v;}
+	
+	/**
 	 * Returns true if board has live cells.
 	 * @return 
 	 */
