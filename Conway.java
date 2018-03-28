@@ -239,6 +239,13 @@ public class Conway
 	void set(int i, int j, int v) {b[i][j]=v>0;}
 	
 	/**
+	 * Flips value of specified cell.
+	 * @param i
+	 * @param j 
+	 */
+	void flip(int i, int j) {b[i][j]=!b[i][j];}
+	
+	/**
 	 * Returns true if board has live cells.
 	 * @return 
 	 */
