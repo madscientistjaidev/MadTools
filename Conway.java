@@ -20,15 +20,6 @@ public class Conway
 	private boolean [][] b;
 
 	/**
-	 * Initializes blank board.
-	 */
-	Conway()
-	{
-		this.s = 0;
-		this.b = null;
-	}
-
-	/**
 	 * Initializes blank board with specified size.
 	 * @param s
 	 */
