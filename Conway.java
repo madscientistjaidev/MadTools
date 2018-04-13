@@ -261,6 +261,9 @@ public class Conway
 		return str;
 	}
 	
+	/**
+	 * Flips a random cell.
+	 */
 	void randomFlip()
 	{
 		int row = (int)(s*Math.random());
