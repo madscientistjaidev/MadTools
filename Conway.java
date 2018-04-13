@@ -260,6 +260,14 @@ public class Conway
 		for(int [] row : brd) str += Arrays.toString(row) + "\n";
 		return str;
 	}
+	
+	void randomFlip()
+	{
+		int row = (int)(s*Math.random());
+		int col = (int)(s*Math.random());
+		
+		flip(row, col);
+	}
 
 	/**
 	 * Example.
