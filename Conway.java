@@ -157,6 +157,14 @@ public class Conway
 		
 		return c;
 	}
+	
+	/**
+	 * Returns number of dead neighbors of specified cell.
+	 * @param i
+	 * @param j
+	 * @return 
+	 */
+	int deadNeighborCount(int i, int j) {return 8-liveNeighborCount(i,j);}
 
 	/**
 	 * Compares current board to specified one.
