@@ -130,6 +130,20 @@ public class Conway
 	 */
 	boolean getNextCell(int i, int j)
 	{
+		int c = liveNeighborCount(i,j);
+
+		if(!b[i][j] && c==3) return true;
+		else return b[i][j] && (c==3 || c==2);
+	}
+	
+	/**
+	 * Returns number of live neighbors of specified cell.
+	 * @param i
+	 * @param j
+	 * @return 
+	 */
+	int liveNeighborCount(int i, int j)
+	{
 		int c = 0, l=s-1;
 		
 		if(i!=0) if(b[i-1][j]) c++;
@@ -140,9 +154,8 @@ public class Conway
 		if(i!=0 && j!=l) if(b[i-1][j+1]) c++;
 		if(i!=l && j!=0) if(b[i+1][j-1]) c++;
 		if(i!=l && j!=l) if(b[i+1][j+1]) c++;
-
-		if(!b[i][j] && c==3) return true;
-		else return b[i][j] && (c==3 || c==2);
+		
+		return c;
 	}
 
 	/**
