@@ -264,6 +264,21 @@ public class Conway
 		
 		return false;
 	}
+	
+	/**
+	 * Checks if any cell in the specified column is alive.
+	 * @param row
+	 * @return 
+	 */
+	boolean colIsActive(int col)
+	{
+		if(!isActive()) return false;
+		
+		for(int i=0; i<s; i++)
+			if(b[i][col]) return true;
+		
+		return false;
+	}
 
 	@Override
 	public String toString()
