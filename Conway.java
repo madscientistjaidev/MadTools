@@ -250,6 +250,20 @@ public class Conway
 	 * @return 
 	 */
 	boolean isActive() {return liveCount()>0;}
+	
+	/**
+	 * Checks if any cell in the specified row is alive.
+	 * @param row
+	 * @return 
+	 */
+	boolean rowIsActive(int row)
+	{
+		if(!isActive()) return false;
+		
+		for(boolean x : b[row]) if(x) return true;
+		
+		return false;
+	}
 
 	@Override
 	public String toString()
