@@ -204,6 +204,8 @@ public class Conway
 	 * @return
 	 */
 	boolean isEqual(Conway otherState) {return isEqual(otherState.getBoard());}
+	
+	
 
 	/**
 	 * Gets value of specified cell.
@@ -321,6 +323,16 @@ public class Conway
 		
 		flip(row, col);
 	}
+	
+	/**
+	 * Calculates Manhattan distance between cells.
+	 * @param i1
+	 * @param j1
+	 * @param i2
+	 * @param j2
+	 * @return 
+	 */
+	int manhattanDistance(int i1, int j1, int i2, int j2) {return Math.abs(i1-i2) + Math.abs(j1-j2);}
 	
 	/**
 	 * Checks whether state is a still life.
