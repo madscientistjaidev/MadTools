@@ -335,6 +335,16 @@ public class Conway
 	int manhattanDistance(int i1, int j1, int i2, int j2) {return Math.abs(i1-i2) + Math.abs(j1-j2);}
 	
 	/**
+	 * Calculates Geometric distance between cells.
+	 * @param i1
+	 * @param j1
+	 * @param i2
+	 * @param j2
+	 * @return 
+	 */
+	double geometricDistance(int i1, int j1, int i2, int j2) {return Math.sqrt(Math.pow(Math.abs(i1-i2),2) + Math.sqrt(Math.pow(Math.abs(j1-j2),2)));}
+	
+	/**
 	 * Checks whether state is a still life.
 	 * @return 
 	 */
