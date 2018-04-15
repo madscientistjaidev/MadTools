@@ -342,7 +342,7 @@ public class Conway
 	 * @param j2
 	 * @return 
 	 */
-	double geometricDistance(int i1, int j1, int i2, int j2) {return Math.sqrt(Math.pow(Math.abs(i1-i2),2) + Math.sqrt(Math.pow(Math.abs(j1-j2),2)));}
+	double geometricDistance(int i1, int j1, int i2, int j2) {return Math.sqrt(Math.pow((i1-i2),2) + Math.sqrt(Math.pow((j1-j2),2)));}
 	
 	/**
 	 * Checks whether state is a still life.
