@@ -321,6 +321,12 @@ public class Conway
 		
 		flip(row, col);
 	}
+	
+	/**
+	 * Checks whether state is a still life.
+	 * @return 
+	 */
+	boolean isStillLife() {return isEqual(getNextState());}
 
 	/**
 	 * Example.
