@@ -349,6 +349,22 @@ public class Conway
 	 * @return 
 	 */
 	boolean isStillLife() {return isEqual(getNextState());}
+	
+	/**
+	 * Checks whether state is an oscillator up to specified number of future states.
+	 * @param limit
+	 * @return 
+	 */
+	int isOscillator(int limit)
+	{
+		if(!isActive()) return 1;
+		
+		Conway newC = new Conway(getBoard());
+		newC.advance();
+		
+		for(int i=1; i<limit; i++, newC.advance()) if(isEqual(newC)) return i;
+		return -1;
+	}
 
 	/**
 	 * Example.
