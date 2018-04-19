@@ -332,6 +332,31 @@ public class Conway
 	double geometricDistance(int i1, int j1, int i2, int j2) {return Math.sqrt(((i1-i2)*(i1-i2)) + ((j1-j2)*(j1-j2)));}
 	
 	/**
+	 * Returns coordinates of geometric center of pattern.
+	 * @return 
+	 */
+	int [] geometricCenter()
+	{
+		double xSum=0.0, ySum=0.0;
+		int count=0;
+		
+		for(int i=0; i<s; i++)
+			for(int j=0; j<s; j++)
+				if(b[i][j])
+				{
+					count++;
+					xSum += j;
+					ySum += i;
+				}
+		
+		int [] res = new int[2];
+		res[0] = (count==0) ? 0 : (int)(xSum/count);
+		res[1] = (count==0) ? 0 : (int)(ySum/count);
+		
+		return res;
+	}
+	
+	/**
 	 * Checks whether state is a still life.
 	 * @return 
 	 */
