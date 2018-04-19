@@ -53,9 +53,7 @@ public class Conway
 		s = b.length;
 		this.b = new boolean[s][s];
 
-		for(int i=0; i<s; i++)
-			for(int j = 0; j<s; j++)
-				this.b[i][j] = b[i][j]>0;
+		for(int i=0; i<s; i++) for(int j = 0; j<s; j++) this.b[i][j] = b[i][j]>0;
 	}
 	
 	/**
@@ -88,9 +86,7 @@ public class Conway
 	{
 		int [][] intB = new int [s][s];
 
-		for(int i=0; i<s; i++)
-			for(int j = 0; j<s; j++)
-				intB[i][j] = b[i][j] ? 1 : 0;
+		for(int i=0; i<s; i++) for(int j = 0; j<s; j++) intB[i][j] = b[i][j] ? 1 : 0;
 
 		return intB;
 	}
@@ -115,9 +111,7 @@ public class Conway
 	{
 		boolean [][] newB = new boolean[s][s];
 
-		for(int i=0; i<s; i++)
-			for(int j = 0; j<s; j++)
-				newB[i][j] = getNextCell(i,j);
+		for(int i=0; i<s; i++) for(int j = 0; j<s; j++) newB[i][j] = getNextCell(i,j);
 
 		return newB;
 	}
@@ -175,9 +169,7 @@ public class Conway
 	{
 		if(otherState.length!=s) return false;
 
-		for(int i = 0; i < s; i++)
-			for(int j = 0; j < s; j++)
-				if(b[i][j] != otherState[i][j]) return false;
+		for(int i = 0; i < s; i++) for(int j = 0; j < s; j++) if(b[i][j] != otherState[i][j]) return false;
 
 		return true;
 	}
@@ -191,9 +183,7 @@ public class Conway
 	{
 		if(otherState.length!=s) return false;
 
-		for(int i = 0; i < s; i++)
-			for(int j = 0; j < s; j++)
-				if(b[i][j] != otherState[i][j]>0) return false;
+		for(int i = 0; i < s; i++) for(int j = 0; j < s; j++) if(b[i][j] != otherState[i][j]>0) return false;
 
 		return true;
 	}
@@ -204,8 +194,6 @@ public class Conway
 	 * @return
 	 */
 	boolean isEqual(Conway otherState) {return isEqual(otherState.getBoard());}
-	
-	
 
 	/**
 	 * Gets value of specified cell.
@@ -297,8 +285,7 @@ public class Conway
 	{
 		if(!isActive()) return false;
 		
-		for(int i=0; i<s; i++)
-			if(b[i][col]) return true;
+		for(int i=0; i<s; i++) if(b[i][col]) return true;
 		
 		return false;
 	}
@@ -378,8 +365,7 @@ public class Conway
 
 		//Random board.
 		int b1[][] = new int[size][size];
-		for(int[] x : b1) for(int i = 0; i<size; i++)
-			x[i] = Math.round(weight+(float)Math.random());
+		for(int[] x : b1) for(int i = 0; i<size; i++) x[i] = Math.round(weight+(float)Math.random());
 
 		System.out.println("\n---------Random Board---------");
 		Conway c1 = new Conway(b1);
