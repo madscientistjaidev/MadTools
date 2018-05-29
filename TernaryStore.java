@@ -1,6 +1,8 @@
 package MadTools;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  *
@@ -12,35 +14,52 @@ abstract class TernaryStore<T>
 	/**
 	 * Stores values in inserted order.
 	 */
-	ArrayList<TernaryNode<T>> vals;
-	
+	ArrayList<TerNode<T>> vals;
+
 	/**
 	 * Root node of Ternary Tree.
 	 */
-	TernaryNode<T> root;
-	
+	TerNode<T> root;
+
 	/**
 	 * Default constructor. Initializes a blank tree.
 	 */
-	TernaryStore(){}
-	
+	TernaryStore()
+	{
+		vals = new ArrayList<>();
+	}
+
 	/**
 	 * Initializes a tree with root node value a.
-	 * @param a 
+	 * @param a
 	 */
 	TernaryStore(T a)
 	{
-		root = new TernaryNode<>(a);
+		root = new TerNode<>(a);
+		vals = new ArrayList<>();
 		vals.add(root);
+	}
+
+	/**
+	 * Initializes a tree with values in Array.
+	 * @param a
+	 */
+	TernaryStore(T [] a)
+	{
+		this(Arrays.asList(a));
 	}
 	
 	/**
 	 * Initializes a tree with values in List.
-	 * @param a 
+	 * @param a
 	 */
-	TernaryStore(ArrayList<T> a)
+	TernaryStore(List<T> a)
 	{
-		TernaryNode <T> curr, root = new TernaryNode<>(a.remove(0));
+		if(a==null || a.isEmpty()) return;
+
+		vals = new ArrayList<>();
+		root = new TerNode<>(a.remove(0));
+		TerNode <T> curr;
 
 		outer:for(T x : a)
 		{
@@ -53,25 +72,25 @@ abstract class TernaryStore<T>
 					case -1:
 						if(curr.left==null)
 						{
-							vals.add(curr.left = new TernaryNode<>(x));
+							vals.add(curr.left=new TerNode<>(x));
 							break inner;
 						}
 						else curr=curr.left;
 						break;
-					
+
 					case 0:
 						if(curr.center==null)
 						{
-							vals.add(curr.center = new TernaryNode<>(x));
+							vals.add(curr.center=new TerNode<>(x));
 							break inner;
 						}
 						else curr=curr.left;
 						break;
-						
+
 					case 1:
 						if(curr.right==null)
 						{
-							vals.add(curr.right = new TernaryNode<>(x));
+							vals.add(curr.right=new TerNode<>(x));
 							break inner;
 						}
 						else curr=curr.right;
@@ -80,7 +99,7 @@ abstract class TernaryStore<T>
 			}
 		}
 	}
-	
+
 	/**
 	 * Used to compare two values. Returns 1 if a>b, 0 if a=b, and -1 if a<b.
 	 * Should be implemented in a sub class or anonymous inner class.
@@ -89,12 +108,12 @@ abstract class TernaryStore<T>
 	 * @return
 	 */
 	abstract int compareTo(T a, T b);
-	
+
 	/**
 	 * Used to build Ternary Tree.
 	 * @param <T>
 	 */
-	class TernaryNode <T>
+	class TerNode <T>
 	{
 		/**
 		 * Value of current node.
@@ -104,13 +123,13 @@ abstract class TernaryStore<T>
 		/**
 		 * Children of current node.
 		 */
-		TernaryNode<T> left, center, right;
+		TerNode<T> left, center, right;
 
 		/**
 		 * Initializes current node
 		 * @param val
 		 */
-		TernaryNode(T val)
+		TerNode(T val)
 		{
 			this.val = val;
 			left = null;
@@ -126,16 +145,16 @@ abstract class TernaryStore<T>
 		{
 			ArrayList<T> result = new ArrayList<>();
 			if(left!=null) result.addAll(left.getAscending());
-			
+
 			result.add(val);
 			while(center!=null)
 			{
 				result.add(center.val);
 				center = center.center;
 			}
-			
+
 			if(right!=null) result.addAll(right.getAscending());
-			
+
 			return result;
 		}
 
@@ -147,17 +166,30 @@ abstract class TernaryStore<T>
 		{
 			ArrayList<T> result = new ArrayList<>();
 			if(right!=null) result.addAll(right.getDescending());
-			
+
 			result.add(val);
 			while(center!=null)
 			{
 				result.add(center.val);
 				center = center.center;
 			}
-			
+
 			if(left!=null) result.addAll(left.getDescending());
 
 			return result;
 		}
+	}
+
+	public static void main(String args[])
+	{
+		ArrayList <Integer> a = new ArrayList<>();
+
+		TernaryStore <Integer> t = new TernaryStore<Integer>(a)
+		{
+			@Override
+			int compareTo(Integer a, Integer b) {return a==b ? 0 : (a>b ? 1 : -1);}
+		};
+
+		System.out.println(t.vals);
 	}
 }
