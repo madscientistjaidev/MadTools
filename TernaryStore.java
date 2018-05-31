@@ -20,7 +20,12 @@ abstract class TernaryStore<T>
 	 * Root node of Ternary Tree.
 	 */
 	TerNode<T> root;
-
+	
+	/**
+	 * Number of elements in tree.
+	 */
+	private int size;
+	
 	/**
 	 * Default constructor. Initializes a blank tree.
 	 */
