@@ -104,6 +104,15 @@ abstract class TernaryStore<T>
 			}
 		}
 	}
+	
+	/**
+	 * Gets size.
+	 * @return 
+	 */
+	int getSize()
+	{
+		return size;
+	}
 
 	/**
 	 * Used to compare two values. Returns 1 if a>b, 0 if a=b, and -1 if a<b.
