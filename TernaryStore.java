@@ -32,6 +32,7 @@ abstract class TernaryStore<T>
 	TernaryStore()
 	{
 		vals = new ArrayList<>();
+		size = 0;
 	}
 
 	/**
@@ -43,6 +44,7 @@ abstract class TernaryStore<T>
 		root = new TerNode<>(a);
 		vals = new ArrayList<>();
 		vals.add(root);
+		size = 1;
 	}
 
 	/**
@@ -52,6 +54,7 @@ abstract class TernaryStore<T>
 	TernaryStore(T [] a)
 	{
 		this(Arrays.asList(a));
+		size = a.length;
 	}
 	
 	/**
@@ -103,6 +106,8 @@ abstract class TernaryStore<T>
 				}
 			}
 		}
+		
+		size = a.size();
 	}
 	
 	/**
