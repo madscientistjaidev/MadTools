@@ -118,6 +118,16 @@ abstract class TernaryStore<T>
 	{
 		return size;
 	}
+	
+	/**
+	 * Removes all elements from tree.
+	 */
+	void clear()
+	{
+		root = null;
+		vals.clear();
+		size = 0;
+	}
 
 	/**
 	 * Used to compare two values. Returns 1 if a>b, 0 if a=b, and -1 if a<b.
